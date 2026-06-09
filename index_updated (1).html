@@ -1,0 +1,3069 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Совет XI — Протокол «Алеф-Нуль»</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-dim: #7a622a;
+  --gold-glow: rgba(201,168,76,0.15);
+  --void: #05050a;
+  --void-2: #0a0a12;
+  --void-3: #10101e;
+  --void-4: #181828;
+  --void-5: #20203a;
+  --red: #8b1c1c;
+  --red-bright: #c0392b;
+  --text: #d4cfc0;
+  --text-dim: #7a7565;
+  --text-mute: #3a3830;
+  --border: rgba(201,168,76,0.18);
+  --border-dim: rgba(201,168,76,0.07);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position: relative;
+  text-align: center;
+  padding: 80px 2rem 60px;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header-stamp {
+  display: inline-block;
+  border: 1px solid var(--red);
+  color: var(--red-bright);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  padding: 4px 16px;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  animation: pulse-red 3s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.header-id {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+}
+
+.site-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 60px rgba(201,168,76,0.2);
+}
+
+.site-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-dim);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.xi-symbol {
+  font-family: 'Cinzel', serif;
+  font-size: 4rem;
+  color: rgba(201,168,76,0.08);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  letter-spacing: 0.5em;
+  white-space: nowrap;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-dim);
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  overflow-x: auto;
+}
+
+nav a {
+  display: inline-block;
+  padding: 14px 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.section-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+p { margin-bottom: 1rem; font-size: 0.95rem; }
+
+/* ── OVERVIEW BLOCK ── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.ov-cell {
+  background: var(--void-2);
+  padding: 20px 24px;
+}
+
+.ov-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ov-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.ov-value.gold { color: var(--gold); font-weight: 500; }
+.ov-value.red { color: var(--red-bright); }
+
+/* ── QUOTE ── */
+blockquote {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 20px 28px 20px 36px;
+  border-left: 2px solid var(--gold);
+  background: linear-gradient(90deg, rgba(201,168,76,0.05) 0%, transparent 100%);
+}
+
+blockquote::before {
+  content: '«';
+  position: absolute;
+  left: 10px; top: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  color: var(--gold-dim);
+  line-height: 1;
+}
+
+blockquote p {
+  font-style: italic;
+  color: var(--text);
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
+
+blockquote cite {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  font-style: normal;
+}
+
+/* ── HIERARCHY TABLE ── */
+.hier-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.875rem;
+}
+
+.hier-table thead tr {
+  background: var(--void-4);
+}
+
+.hier-table th {
+  text-align: left;
+  padding: 10px 16px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.hier-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-dim);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.hier-table tr:hover td { background: rgba(201,168,76,0.03); }
+
+.level-inf td:first-child { color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.1rem; }
+.level-0 td:first-child { color: var(--gold); font-weight: 500; }
+.level-1 td { color: var(--text-dim); }
+.level-2 td { color: var(--text-mute); }
+
+.tier-pill {
+  display: inline-block;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+/* ── MEMBERS GRID ── */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
+  margin: 2rem 0;
+}
+
+.member-card {
+  background: var(--void-2);
+  padding: 22px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.member-card:hover { background: var(--void-3); }
+
+.member-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.member-card:hover::before { opacity: 1; }
+
+.mc-id {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-bottom: 6px;
+}
+
+.mc-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.mc-desc {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* ── MONADA ── */
+.monada-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 2rem 0;
+}
+
+.monada-card {
+  background: var(--void-3);
+  border: 1px solid var(--border-dim);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.monada-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 60px; height: 60px;
+  background: radial-gradient(circle at 100% 100%, rgba(201,168,76,0.06) 0%, transparent 70%);
+}
+
+.mc2-icon {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  color: rgba(201,168,76,0.25);
+  margin-bottom: 10px;
+}
+
+.mc2-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.mc2-body {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ── DEPARTMENTS ── */
+.dept-block {
+  margin-bottom: 24px;
+  border: 1px solid var(--border-dim);
+  overflow: hidden;
+}
+
+.dept-header {
+  background: var(--void-4);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.dept-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.dept-curators {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.dept-body {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.dept-ranks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-dim);
+  border-top: 1px solid var(--border-dim);
+}
+
+.rank-cell {
+  background: var(--void-2);
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.rank-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.rank-name {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  line-height: 1.3;
+}
+
+/* ── MOG TABLE ── */
+.mog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.825rem;
+  margin: 2rem 0;
+}
+
+.mog-table th {
+  background: var(--void-4);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+
+.mog-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border-dim);
+  vertical-align: top;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.mog-table td:first-child {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--gold-dim);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.mog-table td:nth-child(2) {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── PROTOCOLS ── */
+.protocol-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 2rem 0;
+}
+
+.proto-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--border-dim);
+  background: var(--void-2);
+  position: relative;
+}
+
+.proto-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+.proto-num {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: rgba(201,168,76,0.2);
+  line-height: 1;
+  padding-top: 2px;
+  min-width: 30px;
+}
+
+.proto-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.proto-body {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ── INCIDENTS ── */
+.incident {
+  margin-bottom: 16px;
+  border: 1px solid var(--border-dim);
+  overflow: hidden;
+}
+
+.inc-head {
+  background: var(--void-3);
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s;
+}
+
+.inc-head:hover { background: var(--void-4); }
+
+.inc-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-right: 12px;
+}
+
+.inc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--text);
+  flex: 1;
+}
+
+.inc-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+.badge-green { background: rgba(39,80,10,0.4); color: #7db355; border: 1px solid rgba(125,179,85,0.2); }
+.badge-red { background: rgba(139,28,28,0.4); color: #c0392b; border: 1px solid rgba(192,57,43,0.2); }
+.badge-orange { background: rgba(130,80,10,0.4); color: #d4872a; border: 1px solid rgba(212,135,42,0.2); }
+
+.inc-body {
+  display: none;
+  padding: 16px 18px;
+  border-top: 1px solid var(--border-dim);
+  background: var(--void-2);
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.inc-body.open { display: block; }
+
+.timeline { margin: 12px 0; }
+.tl-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.tl-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold-dim);
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 60px 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-xi {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.footer-code {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--text-mute);
+  letter-spacing: 2px;
+}
+
+/* ── REDACTED ── */
+.redacted {
+  background: var(--text-dim);
+  color: transparent;
+  border-radius: 2px;
+  user-select: none;
+  padding: 0 4px;
+}
+
+/* ── DIVIDER ── */
+.gold-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 2.5rem 0;
+  opacity: 0.4;
+}
+
+/* ── SCAN LINE ANIMATION on load ── */
+@keyframes scan {
+  0% { transform: translateY(-100%); opacity: 0.04; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scanline {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  animation: scan 2.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .overview-grid, .monada-grid { grid-template-columns: 1fr; }
+  .dept-ranks { grid-template-columns: repeat(2, 1fr); }
+  .members-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="xi-symbol">Ξ</div>
+  <div class="header-stamp">⚠ Абсолютный гриф секретности — Уровень ∞</div>
+  <div class="header-id">Объект №: 4514 · Протокол «Алеф-Нуль»</div>
+  <h1 class="site-title">СОВЕТ XI</h1>
+  <p class="site-subtitle">Кодовое название: «Ксенос»</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#overview">Обзор</a>
+  <a href="#hierarchy">Иерархия</a>
+  <a href="#members">Состав</a>
+  <a href="#monada">Монада</a>
+  <a href="#departments">Отделы</a>
+  <a href="#mog">МОГ</a>
+  <a href="#protocols">Полномочия</a>
+  <a href="#incidents">Инциденты</a>
+  <a href="#chapter2">Глава II</a>
+  <a href="#chapter3">Глава III</a>
+  <a href="#chapter4">Глава IV</a>
+  <a href="#svyatograd">Святоград</a>
+</nav>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="section-eyebrow">Глава I — Происхождение и природа</div>
+    <h2 class="section-title">Архитектурный центр реальности</h2>
+
+    <div class="overview-grid">
+      <div class="ov-cell">
+        <div class="ov-label">Статус</div>
+        <div class="ov-value gold">Активен · Вне классификации</div>
+      </div>
+      <div class="ov-cell">
+        <div class="ov-label">Уровень допуска</div>
+        <div class="ov-value red">Выше Уровня 5 [ДАННЫЕ УДАЛЕНЫ]</div>
+      </div>
+      <div class="ov-cell">
+        <div class="ov-label">Подчинение</div>
+        <div class="ov-value">The Administrator · напрямую</div>
+      </div>
+      <div class="ov-cell">
+        <div class="ov-label">Локация штаба</div>
+        <div class="ov-value">«Монада» · Сверхпространственный карман</div>
+      </div>
+    </div>
+
+    <p>Совет XI — не орган управления. Он является фундаментальным условием существования Фонда SCP как концепции. Совет O5 управляет логистикой, политикой и сдерживанием аномалий. Совет XI управляет самим <em>фактом</em> того, что Фонд существует, что реальность остаётся стабильной, и что человечество продолжает идти по единственно верному пути — тому, который был рассчитан задолго до его рождения.</p>
+
+    <p>Согласно восстановленным данным из итерации реальности №-4014 и четырёх последующих, Совет O5 не является высшей властью. Никогда ею не являлся. Смотрители — это «операционный директорат»: публичное лицо, которому позволено верить в собственное могущество ровно настолько, чтобы выполнять свою функцию без паники и паралича.</p>
+
+    <blockquote>
+      <p>«O5 считают, что они держат мир на плечах. Они не подозревают, что мы — те, кто держит их самих. А под нами — бездна, которую они не способны даже вообразить.»</p>
+      <cite>— Из перехваченной передачи [ДАННЫЕ УДАЛЕНЫ], приписывается X-1</cite>
+    </blockquote>
+
+    <p>Главное заблуждение высших чинов Фонда — убеждённость в том, что Администратор основал Совет O5. Правда иная: Администратор создал Совет XI как инструмент абсолютного контроля, а уже Совет XI — в координации с Администратором — допустил существование Совета O5 как операционного инструмента. Смотрители — менеджеры. Совет XI — архитекторы реальности.</p>
+
+    <p>Совет XI существует в двух эшелонах: <strong>Космическом</strong> — часть советников пребывает на орбитальных мегаструктурах в точках Лагранжа, наблюдая за Землёй как за одним из множества охраняемых объектов, — и <strong>Земном Контуре</strong>, где другая часть интегрирована в человеческое общество в облике политиков, учёных, соседей.</p>
+  </div>
+</section>
+
+<!-- HIERARCHY -->
+<section id="hierarchy">
+  <div class="container">
+    <div class="section-eyebrow">Истинная структура</div>
+    <h2 class="section-title">Иерархия власти</h2>
+
+    <table class="hier-table">
+      <thead>
+        <tr>
+          <th>Уровень</th>
+          <th>Орган</th>
+          <th>Истинная функция</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="level-inf">
+          <td>∞</td>
+          <td>The Administrator</td>
+          <td>Создатель Совета XI. Верховный надзиратель реальности. Его природа — за пределами любой классификации.</td>
+        </tr>
+        <tr class="level-0">
+          <td><span class="tier-pill">0</span></td>
+          <td>Совет XI «Ксенос»</td>
+          <td>Пальцы Администратора на горле реальности. Контроль над O5, Фондом, временными линиями и самой концепцией порядка. Ни один приказ O5 не является окончательным без их одобрения.</td>
+        </tr>
+        <tr class="level-1">
+          <td>1</td>
+          <td>Совет O5</td>
+          <td>Операционный директорат. Управляет текущими операциями. Верит в собственную исключительность — это условие их эффективности.</td>
+        </tr>
+        <tr class="level-2">
+          <td>2</td>
+          <td>Комитет по этике / Главы Зон</td>
+          <td>Надзор за персоналом и ресурсами. Полностью управляемы через агентов «Паноптикума».</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p>«Иллюзия власти — самый эффективный механизм контроля. O5 принимают решения, думая, что они окончательны. Они не знают, что каждое их решение уже просчитано нами заранее.»</p>
+      <cite>— Протокол совещания «Ксенос», запись X-8</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members">
+  <div class="container">
+    <div class="section-eyebrow">Состав — X-1 / X-11</div>
+    <h2 class="section-title">Одиннадцать воплощений власти</h2>
+
+    <p>Каждый советник — не должность, а живое воплощение одного из фундаментальных аспектов контроля над реальностью. Их индивидуальные облики — лишь проекции для тех немногих, кто когда-либо видел их лично и остался в живых.</p>
+
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="mc-id">X-1 · НАСЛЕДНИК</div>
+        <div class="mc-name">Наследник</div>
+        <div class="mc-desc">Глава Совета. Единственный, кто имеет прямой доступ к Администратору в любое время. Там, где должно быть лицо — клубящаяся чёрная пустота, разрезанная крестом. Его присутствие физически удваивает гравитацию в радиусе километра. Обладает правом «Окончательного Слова». Говорят, если Администратор покинет этот мир — X-1 станет реальностью вместо него.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-2 · АРХИТЕКТОР</div>
+        <div class="mc-name">Архитектор</div>
+        <div class="mc-desc">Конструктор баз и реальностей. Спроектировал «Монаду» и все орбитальные станции. Видит мир как чертёж — и может изменить молекулярную структуру любого здания Фонда за секунды. Отвечает за физическую архитектуру реальности под управлением Совета XI.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-3 · ВЕСТНИК</div>
+        <div class="mc-name">Вестник</div>
+        <div class="mc-desc">Связь с Земным Контуром. Внедрение агентов в человеческое общество. Способен одновременно существовать в тысячах мест, принимая облик любого человека — от президента до дворника. Каждый, кто думает, что говорит с кем-то важным — возможно, говорит с Вестником.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-4 · СТИРАТЕЛЬ</div>
+        <div class="mc-name">Стиратель</div>
+        <div class="mc-desc">Палач и чистильщик реальности. Управляет орудием «Стиратель». Удаляет из истории целые временные линии, которые пошли по неверному пути. Самый холодный и молчаливый член Совета. Его прикосновение превращает людей в строки цифрового кода.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-5 · ХРАНИТЕЛЬ ГЕНЕЗИСА</div>
+        <div class="mc-name">Хранитель Генезиса</div>
+        <div class="mc-desc">Источник аномалий. Знает «Первоисточник» — математическую формулу возникновения любой аномалии. Следит, чтобы SCP-объекты появлялись в нужных местах и в нужное время, тестируя человечество и O5 на прочность.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-6 · ТЮРЕМЩИК МЫСЛЕЙ</div>
+        <div class="mc-name">Тюремщик Мыслей</div>
+        <div class="mc-desc">Ментальный надзор за Советом O5 и персоналом Фонда. Редактирует сознание Смотрителей до того, как мысль о предательстве успевает оформиться в слово. В голове каждого сотрудника Фонда уже есть его нити.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-7 · ХРАНИТЕЛЬ БЕЗДНЫ</div>
+        <div class="mc-name">Хранитель Бездны</div>
+        <div class="mc-desc">Космический эшелон. Отвечает за глубокий космос и защиту Земли от угроз, о которых Фонд даже не подозревает. Управляет движением планет, чтобы скрывать присутствие объектов Совета XI от любых сканеров.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-8 · ТКАЧ ВЕРОЯТНОСТЕЙ</div>
+        <div class="mc-name">Ткач Вероятностей</div>
+        <div class="mc-desc">Постоянно перебирает миллиарды стеклянных сфер в «Архиве Исходов». Определяет единственный стабильный сценарий развития мира из бесчисленного множества симуляций. Его вычислительная мощь возросла в 13 раз после Инцидента №9.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-9 · ВЕРХОВНЫЙ СУД</div>
+        <div class="mc-name">Верховный Суд</div>
+        <div class="mc-desc">Абсолютный трибунал. Обладает юридическим правом судить одного члена O5 или весь состав Смотрителей. Его вердикт окончателен. После Инцидента №9 его приговоры стали мгновенными — без слов.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-10 · ТЕНЬ</div>
+        <div class="mc-name">Тень</div>
+        <div class="mc-desc">Командующий МОГ X-0 «Гвардия Ксенос». Почти никогда не обретает плотную форму. Воплощение безопасности Совета — невидимый охранник за спиной каждого члена «Ксеноса». Именно его тень падает на поле боя, прежде чем что-либо происходит.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">X-11 · ЧЁРНАЯ СМЕРТЬ</div>
+        <div class="mc-name">Чёрная Смерть</div>
+        <div class="mc-desc">Системный апоптоз реальности. Не сражается — аннулирует сам факт существования. Следит за стабильностью ткани пространства. Если разрыв нельзя закрыть иначе — X-11 просто отсекает повреждённый участок от основной вселенной.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONADA -->
+<section id="monada">
+  <div class="container">
+    <div class="section-eyebrow">Штаб-квартира</div>
+    <h2 class="section-title">«Монада» — точка вне реальности</h2>
+
+    <p>Официальное название в редчайших документах — «Точка Зеро» или Объект «Утопия-X». Расположена в так называемом «Семантическом Кармане Космоса» — пустоте между реальностями, где не действуют законы термодинамики, гравитации и причинно-следственных связей.</p>
+
+    <p>Снаружи штаб-квартира выглядит как бесконечный фрактал из белого камня и жидкого золота, постоянно меняющий форму. Попасть сюда можно только через «Квантовый Антракт» — процедуру, доступную исключительно Администратору или X-1. Для любого другого существа координаты «Монады» являются когнитивным оружием: при попытке их осознать наступает мгновенная остановка сердца.</p>
+
+    <div class="monada-grid">
+      <div class="monada-card">
+        <div class="mc2-icon">◈</div>
+        <div class="mc2-title">Архив Исходов</div>
+        <div class="mc2-body">Центральный зал. Миллиарды парящих стеклянных сфер — каждая симуляция развития человечества. Совет XI наблюдает, отбирая единственный «стабильный» вариант реальности. O5 не знает, что выбор уже сделан.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">⚙</div>
+        <div class="mc2-title">Двигатель Вечности</div>
+        <div class="mc2-body">Питание «Монады» обеспечивается «запертыми» микровселенными в состоянии вечного теплового взрыва. Ресурсы Совета XI фактически бесконечны — это не метафора, а физический факт.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">✦</div>
+        <div class="mc2-title">Зал Тронов</div>
+        <div class="mc2-body">В центре «Монады» — круглая площадка с 10–11 креслами. Советники редко сидят в них физически: чаще это проекции чистой воли или сущности из света и данных.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">◉</div>
+        <div class="mc2-title">Кабинет Администратора</div>
+        <div class="mc2-body">Единственное место, выглядящее как обычный кабинет начала XX века. Тёмное дерево, запах табака. На столе — телефон без проводов. Когда он звонит, Администратор недоволен. Для X-1 этот звук — худший сигнал во вселенной.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">⊗</div>
+        <div class="mc2-title">Орудие «Стиратель»</div>
+        <div class="mc2-body">Прямо из «Монады» можно направить сигнал в любую точку пространства-времени и мгновенно «удалить» любой объект, человека или Зону Фонда. Остальной мир просто забывает, что удалённое когда-либо существовало.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">◬</div>
+        <div class="mc2-title">Гвардия Ксенос</div>
+        <div class="mc2-body">Существа без имён, лиц и сознания. При попытке вторжения они не стреляют — они переписывают историю нарушителя так, чтобы тот никогда не рождался. В радиусе 10 м от них время замедляется на 15%.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section id="departments">
+  <div class="container">
+    <div class="section-eyebrow">Пять структур</div>
+    <h2 class="section-title">Структура управления</h2>
+
+    <!-- УВБП -->
+    <div class="dept-block">
+      <div class="dept-header">
+        <span class="dept-name">УВБП — Управление Внутренней Безопасности и Правопорядка</span>
+        <span class="dept-curators">Прямое подчинение: ВПСП · X-10</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Полноценная полицейская структура внутри всех объектов Фонда. Если обычная охрана Зоны следит за тем, чтобы SCP-объекты не сбежали, то УВБП следит за тем, чтобы сотрудники не нарушали устав, не воровали аномальные ресурсы и не контактировали с нелегальными лицами.</p>
+        <div class="protocol-list" style="margin:0;">
+          <div class="proto-item">
+            <div class="proto-num">I</div>
+            <div>
+              <div class="proto-title">Арест любого уровня</div>
+              <div class="proto-body">Право задержать любого сотрудника — от уборщика класса D до Директора Зоны — без объяснения причин на срок до 72 часов.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">II</div>
+            <div>
+              <div class="proto-title">Следствие и Допрос</div>
+              <div class="proto-body">Собственные следственные изоляторы в «Монаде», где время течёт иначе — делая допросы бесконечными.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">III</div>
+            <div>
+              <div class="proto-title">Борьба с «Нелегалами»</div>
+              <div class="proto-body">Задержание лиц, проникших в Зоны без допуска, и поиск «кротов» — сотрудников, работающих на Синдикат или остатки американского Фонда.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Следователь</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Оперативник «Заслона»</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Комиссар-Инспектор</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Верховный Прокурор Реальности</div></div>
+      </div>
+    </div>
+
+    <!-- ВПСП -->
+    <div class="dept-block">
+      <div class="dept-header">
+        <span class="dept-name">ВПСП — Всесоюзная Партия Содержания и Прогресса</span>
+        <span class="dept-curators">Глава: X-1 (Наследник)</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Единственная официальная политическая сила Фонда. Партия занимает отдельное крыло в «Монаде», соединённое с её «Сердцем» — стены партийных кабинетов буквально слышат шёпот в любом коридоре.</p>
+        <div class="protocol-list" style="margin:0;">
+          <div class="proto-item">
+            <div class="proto-num">↓</div>
+            <div>
+              <div class="proto-title">Снятие Директоров</div>
+              <div class="proto-body">Тройка Комиссаров вправе отстранить Директора Зоны на месте, объявить «идеологически несостоятельным» и отправить на переаттестацию или в камеры содержания.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">↓</div>
+            <div>
+              <div class="proto-title">Контроль Совета XI</div>
+              <div class="proto-body">Партия следит даже за сотрудниками Советников. Если секретарь или аналитик допустит утечку — Партия может привести его в суд или уничтожить.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">↓</div>
+            <div>
+              <div class="proto-title">Надзор за X-0 («Гвардия Ксенос»)</div>
+              <div class="proto-body">Кураторы следят, чтобы бойцы Тени не «пропитывались» аномальной тьмой. Имеется «красная кнопка» — дистанционный детонатор или код амнезиака при избыточной лояльности командиру выше, чем Партии.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">↓</div>
+            <div>
+              <div class="proto-title">Синхронизация с X-99</div>
+              <div class="proto-body">Партия проверяет чистоту «светового кода» бойцов X-99, чтобы в искусственном разуме не возникло системных ошибок или зачатков человеческих чувств.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Куратор Зоны</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Комиссар Юстиции</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Комиссар-Инспектор</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Генеральный Секретарь</div></div>
+      </div>
+    </div>
+
+    <!-- ПАНОПТИКУМ -->
+    <div class="dept-block">
+      <div class="dept-header">
+        <span class="dept-name">«Паноптикум» — Служба Внутреннего Ценза и Надзора</span>
+        <span class="dept-curators">X-9 · X-6</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Самый пугающий отдел. Его сотрудники не изучают аномалии — они изучают <em>лояльность</em>. «Паноптикум» исходит из принципа, что любой сотрудник Фонда, включая Смотрителей, является потенциальной угрозой или предателем мандата Администратора.</p>
+        <div class="protocol-list" style="margin:0;">
+          <div class="proto-item">
+            <div class="proto-num">I</div>
+            <div>
+              <div class="proto-title">Чтение теней</div>
+              <div class="proto-body">Постоянный мониторинг мыслей и переговоров Совета O5. У каждого Смотрителя в «ближнем круге» есть агент «Паноптикума», замаскированный под ассистента или советника.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">II</div>
+            <div>
+              <div class="proto-title">Аудит реальности</div>
+              <div class="proto-body">Проверка всех решений O5 на соответствие воле Администратора. Если решение признано «дефектным» — отдел инициирует его отмену через X-1.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">III</div>
+            <div>
+              <div class="proto-title">Протокол «Чистка»</div>
+              <div class="proto-body">Выявление и устранение ячеек коррупции или амбиций внутри Фонда. Если отдел фиксирует заговор — виновные просто исчезают из реальности. Работа для МОГ X-0.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Наблюдатель</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Эмиссар Безмолвия</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Инквизитор Реальности</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Око Приговора</div></div>
+      </div>
+    </div>
+
+    <!-- ВЕРТИКАЛЬ -->
+    <div class="dept-block">
+      <div class="dept-header">
+        <span class="dept-name">«Вертикаль» — Внешний Контур и Глубокий Космос</span>
+        <span class="dept-curators">X-7 · X-2</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Несмотря на то что основные мощности сосредоточены на орбитальных мегаструктурах, «Вертикаль» обладает мандатом на Прямое Приземление. Если «Паноптикум» выявляет угрозу, которую нельзя решить шпионажем, — «Вертикаль» доставляет мощь Совета XI прямо на поверхность.</p>
+        <div class="protocol-list" style="margin:0;">
+          <div class="proto-item">
+            <div class="proto-num">I</div>
+            <div>
+              <div class="proto-title">Орбитальный купол</div>
+              <div class="proto-body">Содержание системы «Стирателей», способных уничтожить любую Зону Фонда по одному сигналу из космоса.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">II</div>
+            <div>
+              <div class="proto-title">Тактическое Десантирование</div>
+              <div class="proto-body">Прибытие на Землю в точках конфликта, невидимых для стандартных систем обнаружения. Корабли материализуются прямо над целью.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Страж Зенита</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Магистр Орбит</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Командор Пустоты</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Маршал Эшелона</div></div>
+      </div>
+    </div>
+
+    <!-- АТЛАС -->
+    <div class="dept-block">
+      <div class="dept-header">
+        <span class="dept-name">«Атлас» — Департамент Высших Наук</span>
+        <span class="dept-curators">X-5 · X-2</span>
+      </div>
+      <div class="dept-body">
+        Если учёные Фонда «исследуют» аномалии — «Атлас» ими управляет. Здесь хранятся «материнские» версии SCP-объектов, которые в нашем мире считаются уникальными. Здесь разрабатывается снаряжение Гвардии Ксенос. Здесь моделируется будущее и проводится коррекция реальности на квантовом уровне задолго до того, как O5 успевает что-либо заметить.
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Адепт Формул</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Техно-Маг Первоисточника</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Архитектор Исходов</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Демиург Монады</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MOG -->
+<section id="mog">
+  <div class="container">
+    <div class="section-eyebrow">Силовой блок</div>
+    <h2 class="section-title">Мобильные Оперативные Группы</h2>
+
+    <!-- X-0 -->
+    <div class="dept-block" style="margin-bottom:24px;">
+      <div class="dept-header">
+        <span class="dept-name">МОГ X-0 — «Гвардия Ксенос»</span>
+        <span class="dept-curators">Подчинение: X-10 (Тень)</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Личная охрана Совета XI. Сопровождают членов Совета во время визитов в Зоны Фонда и залы Совета O5. Подразделение не использует стандартное вооружение Фонда — их присутствие само по себе является оружием. Девиз: <em>«Нас не было. Вас не будет.»</em></p>
+        <p>Бойцы выглядят как высокие человекоподобные фигуры в броне из «Материала-X» — чёрного полимера, поглощающего 100% падающего света. Они выглядят как дыры в пространстве.</p>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Сенсор</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Ликвидатор</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Центурион Пустоты</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Эгида Совета</div></div>
+      </div>
+    </div>
+
+    <blockquote>
+      <p>«Мы выставили против них пятьдесят лучших бойцов Альфа-1. Гвардия Ксенос просто шла вперёд. Они не стреляли. Они просто шли. И там, где они проходили, наши люди исчезали. Не умирали — именно исчезали, будто их там никогда не было.»</p>
+      <cite>— Из отчёта выжившего сотрудника СБ, Зона-01</cite>
+    </blockquote>
+
+    <hr class="gold-divider">
+
+    <!-- X-00 -->
+    <div class="dept-block" style="margin:24px 0;">
+      <div class="dept-header">
+        <span class="dept-name">МОГ X-00 — «Судьи Истока»</span>
+        <span class="dept-curators">Подчинение: Администратор · X-1 (Наследник)</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Высшее охранное подразделение Совета XI. В то время как Гвардия X-0 обеспечивает общую безопасность, «Судьи Истока» являются <em>иммунной системой</em> «Монады». Пробуждаются из стазиса только тогда, когда под прямой угрозой оказывается жизнь члена Совета XI или сама структура реальности штаб-квартиры.</p>
+        <p>Их появление означает, что ситуация вышла за пределы возможностей обычных сил сдерживания. Внешний вид и вооружение: <span class="redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Хранитель Нити</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Фазовый Якорь</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Судья Причинности</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Исток — <span class="redacted">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div></div>
+      </div>
+    </div>
+
+    <hr class="gold-divider">
+
+    <!-- X-99 -->
+    <div class="dept-block" style="margin:24px 0;">
+      <div class="dept-header">
+        <span class="dept-name">МОГ X-99 — «Белое Пламя Искупления»</span>
+        <span class="dept-curators">Подчинение: Администратор · X-9 · X-1</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Создана в условиях строжайшей секретности в глубоком вакуумном стазисе. В состав входят не люди, а «информационные конструкты» — сознания лучших оперативников прошлого, перенесённые в искусственные тела из аномального белого сплава, не подверженного биологическому или темпоральному заражению.</p>
+        <p>Если X-0 — это «Тень», а X-00 — это «Время», то X-99 — это <em>«Чистая Энергия Идеи»</em>. Для зомби и инфекций бойцы X-99 — пустое место: в них нет жизни, которую можно поглотить.</p>
+      </div>
+      <div class="dept-ranks">
+        <div class="rank-cell"><div class="rank-num">I</div><div class="rank-name">Конструкт «Прометей»</div></div>
+        <div class="rank-cell"><div class="rank-num">II</div><div class="rank-name">Носитель Отрицания</div></div>
+        <div class="rank-cell"><div class="rank-num">III</div><div class="rank-name">Командир Света</div></div>
+        <div class="rank-cell"><div class="rank-num">IV</div><div class="rank-name">Архангел Искупления</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <p style="font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--gold-dim); margin-bottom:1rem;">СРАВНЕНИЕ ВЫСШИХ СИЛ</p>
+      <table class="mog-table">
+        <thead>
+          <tr>
+            <th>Подразделение</th>
+            <th>Специализация</th>
+            <th>Пробуждение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>X-0 «Гвардия Ксенос»</td>
+            <td>Тайные операции · личная охрана</td>
+            <td>Постоянная готовность</td>
+          </tr>
+          <tr>
+            <td>X-00 «Судьи Истока»</td>
+            <td>Защита ткани реальности</td>
+            <td>Угроза жизни советника или «Монаде»</td>
+          </tr>
+          <tr>
+            <td>X-99 «Белое Пламя»</td>
+            <td>Аннигиляция аномальной заразы</td>
+            <td>Угрозы, недоступные X-0 и X-00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROTOCOLS -->
+<section id="protocols">
+  <div class="container">
+    <div class="section-eyebrow">Полномочия и мандат</div>
+    <h2 class="section-title">Протоколы абсолютной власти</h2>
+
+    <div class="protocol-list">
+      <div class="proto-item">
+        <div class="proto-num">I</div>
+        <div>
+          <div class="proto-title">Протокол «Перезагрузка»</div>
+          <div class="proto-body">Единоличное право инициировать сценарий класса K — конец света — без согласия или уведомления Совета O5. Активируется, если Смотрители теряют контроль над ситуацией в Фонде или начинают действовать вопреки воле Администратора. Объяснений не требуется. Возражений не предусмотрено.</div>
+        </div>
+      </div>
+      <div class="proto-item">
+        <div class="proto-num">II</div>
+        <div>
+          <div class="proto-title">Право «Приоритетного Решения»</div>
+          <div class="proto-body">Любой приказ, инициированный Советом XI, мгновенно обнуляет все протоколы Смотрителей без права апелляции, пересмотра или возражения. Члены O5, попытавшиеся оспорить это право, более не существуют ни в одной из известных итераций реальности.</div>
+        </div>
+      </div>
+      <div class="proto-item">
+        <div class="proto-num">III</div>
+        <div>
+          <div class="proto-title">Доступ к «Первоисточнику»</div>
+          <div class="proto-body">Только «Ксенос» знает истинную природу происхождения аномалий. Для Совета XI SCP-объекты — не загадки. Они являются либо побочными продуктами деятельности самого Совета XI, либо намеренно размещёнными инструментами проверки O5 и человечества.</div>
+        </div>
+      </div>
+      <div class="proto-item">
+        <div class="proto-num">IV</div>
+        <div>
+          <div class="proto-title">Скрытый надзор «Паноптикума»</div>
+          <div class="proto-body">Члены Совета XI никогда не появляются лично — они используют других сотрудников Фонда как свой голос. Однако когда они всё же появляются лично в любой Зоне или зале заседаний O5 — это акт абсолютного доминирования. Статус Смотрителей в их присутствии аннулируется полностью.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCIDENTS -->
+<section id="incidents">
+  <div class="container">
+    <div class="section-eyebrow">Зарегистрированные события</div>
+    <h2 class="section-title">Ключевые инциденты</h2>
+    <p style="margin-bottom:2rem; font-size:0.85rem; color:var(--text-dim);">Нажмите на инцидент для раскрытия подробностей.</p>
+
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№01</span>
+        <span class="inc-title">«Кровавое Затмение»</span>
+        <span class="inc-badge badge-green">Ликвидировано</span>
+      </div>
+      <div class="inc-body">
+        <p>Повстанцы Хаоса атаковали Зону-01 через украденный аномальный артефакт, заблокировали Совет O5 в бункере и уничтожили большую часть «Багряной десницы». Целью был захват данных о местонахождении Администратора.</p>
+        <div class="timeline">
+          <div class="tl-row"><div class="tl-time">02:15</div><div>Повстанцы прорываются в центральный архив.</div></div>
+          <div class="tl-row"><div class="tl-time">02:18</div><div>Все системы связи Зоны-01 переходят под контроль Совета XI. Объявляется код «Абсолютный Зенит».</div></div>
+          <div class="tl-row"><div class="tl-time">02:20</div><div>Отдел «Вертикаль» осуществляет квантовый прокол. Над Зоной-01 материализуется корабль-стиратель.</div></div>
+          <div class="tl-row"><div class="tl-time">02:25</div><div>Все бойцы Повстанцев дезинтегрируются на атомы. Артефакт изъят отделом «Атлас».</div></div>
+        </div>
+        <p>Совет O5 получил строгий выговор за «непростительную халатность». Все выжившие свидетели прошли ментальную чистку через «Паноптикум».</p>
+      </div>
+    </div>
+
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№02</span>
+        <span class="inc-title">«Суд над Предателем»</span>
+        <span class="inc-badge badge-green">Стёрт из истории</span>
+      </div>
+      <div class="inc-body">
+        <p>O5-9 вёл тайные переговоры с руководством Повстанцев Хаоса, планируя передать им чертежи «Двигателя Вечности» в обмен на личное бессмертие. X-6 выявил заговор во время ментального аудита.</p>
+        <div class="timeline">
+          <div class="tl-row"><div class="tl-time">00:05</div><div>В момент подписания договора пространство сворачивается. Появляется X-9 с двумя Эгидами Совета.</div></div>
+          <div class="tl-row"><div class="tl-time">00:07</div><div>Оружие Повстанцев мгновенно превращается в пепел — Демиург Монады удалённо изменил законы химии.</div></div>
+          <div class="tl-row"><div class="tl-time">00:12</div><div>«Протокол Пустоты». Информация об O5-9 начинает исчезать из истории всех реальностей.</div></div>
+        </div>
+        <p>O5-9 никогда не существовал. Его место занял кандидат, одобренный Советом XI.</p>
+      </div>
+    </div>
+
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№06</span>
+        <span class="inc-title">«Раскол Монады»</span>
+        <span class="inc-badge badge-orange">Отражено · Урон нанесён</span>
+      </div>
+      <div class="inc-body">
+        <p>ГОК использовала «Трансмерный Бур Казимира», чтобы пробить внешнюю стену «Монады». Первое в истории вторжение в штаб-квартиру Совета XI. 30 оперативников «Физикс» прорвались в залы, разбивая стеклянные сферы реальностей.</p>
+        <blockquote style="margin:1rem 0;">
+          <p>«Мы не на чужой базе. Мы внутри организма. И мы — инфекция, которую он только что решил убить.»</p>
+          <cite>— Из чёрного ящика лидера группы ГОК (запись 00:15)</cite>
+        </blockquote>
+        <p>X-4 и X-10 лично ликвидировали всех 30 оперативников. Тела возвращены на Землю через разлом — в «разобранном» состоянии: сознания перемешаны со снаряжением.</p>
+      </div>
+    </div>
+
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№09</span>
+        <span class="inc-title">«Падение Небожителей»</span>
+        <span class="inc-badge badge-red">Критические потери</span>
+      </div>
+      <div class="inc-body">
+        <p>Коалиция ГОК + МКИД + ФБР ОНП применила «Сингулярный вирус МКИД», сделав «Монаду» материальной и уязвимой. X-1, X-7 и X-9 получили тяжёлые ранения. Впервые в истории Совет XI был близок к поражению.</p>
+        <p>Но советники восстали — сильнее прежнего. Протокол «Возмездие» стёр инфраструктуру ГОК и МКИД с лица истории. Мир забыл об их существовании.</p>
+        <blockquote style="margin:1rem 0;">
+          <p>«Они пытались убить время. Но мы и есть время. Они пытались разрушить закон. Но мы и есть закон.»</p>
+          <cite>— X-1, обращение к Совету после выздоровления</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№10</span>
+        <span class="inc-title">«Падение Небосвода»</span>
+        <span class="inc-badge badge-red">Почти катастрофа</span>
+      </div>
+      <div class="inc-body">
+        <p>ГОК создала контр-резонансную установку «Молот Пустоты», которая выбила «Монаду» из гиперпространства прямо в атмосферу Земли над Тихим океаном. Удар такой массы уничтожил бы всё живое на планете.</p>
+        <div class="timeline">
+          <div class="tl-row"><div class="tl-time">04:35</div><div>X-1, превозмогая боль, передаёт последний приказ: «Судьи... Якорь... СЕЙЧАС!»</div></div>
+          <div class="tl-row"><div class="tl-time">04:38</div><div>12 бойцов МОГ X-00 выходят на внешнюю обшивку Монады. Вонзают Гравитационные Кинжалы в воздух, «пришивая» цитадель к ткани реальности.</div></div>
+          <div class="tl-row"><div class="tl-time">04:38</div><div>Монада замирает в нескольких метрах над океаном. Падение остановлено.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section id="chapter2">
+  <div class="container">
+    <div class="section-eyebrow">Глава II — Продолжение</div>
+    <h2 class="section-title">Хроника критических событий</h2>
+    <p style="margin-bottom:2rem; font-size:0.85rem; color:var(--text-dim);">Нажмите на инцидент для раскрытия подробностей.</p>
+
+    <!-- INCIDENT 11 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№11</span>
+        <span class="inc-title">«Освобождение Сущности»</span>
+        <span class="inc-badge badge-red">Критическое нарушение содержания</span>
+      </div>
+      <div class="inc-body">
+        <p>В секретных архивах КСИР веками хранилась информация о «Близнецах Разорения» — двух сущностях из чистой анти-материи. Первая сущность, «Абаддон», вырвалась на свободу из руин иерусалимского хранилища и двинулась к своей «сестре», запертой в Зоне PRI.</p>
+
+        <div class="overview-grid" style="margin:1.5rem 0;">
+          <div class="ov-cell">
+            <div class="ov-label">Статус</div>
+            <div class="ov-value red">Потеря двух стратегических объектов</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Цель сущности</div>
+            <div class="ov-value">Воссоединение с «сестрой» в Зоне PRI</div>
+          </div>
+        </div>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Падение Зон 12 и 18</span>
+          </div>
+          <div class="dept-body">
+            «Абаддон» двигался к цели, игнорируя любые физические преграды. Зона 12 (Научный сектор) была стёрта с лица земли за 4 минуты — сущность «выпила» всё электричество и жизненную силу из персонала. Зона 18 (Сектор МОГ) попыталась дать отпор, применив ядерный заряд объекта, — но тот был поглощён сущностью, лишь увеличив её мощь.
+          </div>
+        </div>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Осада Зоны PRI</span>
+          </div>
+          <div class="dept-body">
+            Когда «Абаддон» прибыл, небо над Зоной почернело. Рядовые бойцы СБ гибли сотнями просто от взгляда на сущность — их разум выгорал. Целью «Абаддона» был самый защищённый блок Зоны PRI, где находилась её «сестра».
+          </div>
+        </div>
+
+        <p style="margin-bottom:0.75rem; font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--gold-dim);">ВМЕШАТЕЛЬСТВО ВЫСШИХ СИЛ</p>
+        <div class="protocol-list">
+          <div class="proto-item">
+            <div class="proto-num">X-0</div>
+            <div>
+              <div class="proto-title">МОГ X-0 «Гвардия»</div>
+              <div class="proto-body">Создали живую стену, сдерживая физическое продвижение. Потери составили 12 гвардейцев — впервые в истории Гвардии Ксенос.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">X-00</div>
+            <div>
+              <div class="proto-title">МОГ X-00 «Судьи Истока»</div>
+              <div class="proto-body">Использовали фазовые якоря, чтобы «пригвоздить» сущность к пространству и обездвижить её для финального сдерживания.</div>
+            </div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>С колоссальными потерями элитных бойцов «Абаддона» удалось загнать в стазис-куб «Альфа-Омеги». Однако Зоны 12 и 18 были утрачены безвозвратно.</p>
+          <cite>— Итоговый рапорт по инциденту №11</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INCIDENT 12 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№12</span>
+        <span class="inc-title">«Предательство»</span>
+        <span class="inc-badge badge-orange">Внутреннее расследование · Суд</span>
+      </div>
+      <div class="inc-body">
+        <p>После того как пыль осела, X-10 (Тень) и X-8 (Ткач) восстановили цепочку событий. Было установлено: печати в Зоне 12 не могли разрушиться сами. Коды доступа были переданы через зашифрованный канал из самого сердца Зоны 19.</p>
+
+        <div class="overview-grid" style="margin:1.5rem 0;">
+          <div class="ov-cell">
+            <div class="ov-label">Обвиняемый</div>
+            <div class="ov-value gold">O5-2 · Позывной «Путь»</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Мотив</div>
+            <div class="ov-value">Контакт с остатками «Комитета Свободных»</div>
+          </div>
+        </div>
+
+        <div class="timeline" style="margin:1.5rem 0;">
+          <div class="tl-row">
+            <div class="tl-time">АРЕСТ</div>
+            <div>X-10 лично явился в кабинет O5-2. Когда «Путь» попытался активировать скрытый портал, Тень просто отрезал его от реальности, заперев в «Комнате Безмолвия».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ДОПРОС</div>
+            <div>Выяснилось, что O5-2 считал Совет XI тиранией. Он верил: только высвобождение древних сущностей создаст хаос, в котором люди смогут снова стать свободными.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">СУД</div>
+            <div>Суд проходил в «Зале Приговоров». На коленях в центре стоял O5-2, окружённый всеми десятью советниками X.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Твоя вина не только в предательстве, но и в том, что ты поставил под угрозу стабильность Первоисточника.»</p>
+          <cite>— X-9 (Верховный Суд), оглашение приговора</cite>
+        </blockquote>
+
+        <blockquote>
+          <p>«Вы не боги! Вы просто заключённые в золотых доспехах! Я открыл путь к истине!»</p>
+          <cite>— O5-2 «Путь» в ответ Суду</cite>
+        </blockquote>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Приговор: Протокол «Вечное Забвение»</span>
+          </div>
+          <div class="dept-body">
+            O5-2 не был убит. X-9 применил протокол «Вечное Забвение»: личность «Пути» была стёрта, его тело превращено в безмолвный сервитор-автомат, который отныне обречён вечно чинить коридоры Зоны 19 — не помня ни своего имени, ни своего греха.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECTORATE -->
+    <div class="dept-block" style="margin:2.5rem 0;">
+      <div class="dept-header">
+        <span class="dept-name">Новая Фракция: «Директорат Отрицания» (The Denial Directorate)</span>
+        <span class="dept-curators">Уровень угрозы: КРИТИЧЕСКИЙ</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Это не просто группа террористов — это выжившие из тысяч уничтоженных реальностей, объединившиеся под началом существа, которое называет себя «Анти-Администратором».</p>
+      </div>
+      <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+        <div class="rank-cell">
+          <div class="rank-num">ТЕХНОЛОГИЯ</div>
+          <div class="rank-name">«Нуль-Эфир» — прямая противоположность Первоисточнику. Растворяет законы физики, превращая реальность в нестабильный хаос.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">АРМИЯ</div>
+          <div class="rank-name">«Отречённые» — бывшие оперативники МОГ и аномалии класса «Кетер», чьи миры были стёрты. Броня поглощает свет и радиацию.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">ЦИТАДЕЛЬ</div>
+          <div class="rank-name">«Ахерон» — перемещается не в космосе, а в квантовых промежутках между секундами. Её невозможно ударить — её «нет» в настоящем моменте.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 13 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№13</span>
+        <span class="inc-title">«Кровавый Перигей»</span>
+        <span class="inc-badge badge-red">Орбитальное столкновение</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Орбита Земли / Лунная база Фонда</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Противник</div>
+            <div class="ov-value red">Директорат Отрицания · Генерал Нокс</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">УДАР</div>
+            <div>Без предупреждения Цитадель «Ахерон» вышла из квантового разлома над Луной. «Луч Отрицания» за одну секунду отключил 30% мощности установки «Химера-13». Дальний Восток и часть Европы погрузились в аномальный туман — ожили старые городские легенды.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ШТУРМ</div>
+            <div>Тысячи «Отречённых» высадились на Лунную базу, уничтожая персонал СБ. Целью был Главный Кристалл Резонанса. Командующий Генерал Нокс (киборг на анти-материи) лично прорубал путь к ядру.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ОТВЕТ</div>
+            <div>На Луну лично прибыли X-1 (Наследник), X-7 (Хранитель Бездны) и X-10 (Тень). X-7 создал вокруг Луны поле гравитационного сжатия. X-10 и МОГ X-00 вступили в ближний бой — лунная поверхность плавилась от избытка энергии.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ПЕРЕЛОМ</div>
+            <div>Генерал Нокс активировал Бомбу Сингулярности, способную уничтожить Луну вместе с советниками. X-1 заставил время вокруг бомбы застыть прямым приказом Администратора — затем направил всю мощь Первоисточника на Цитадель «Ахерон».</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>Директорат отступил в квантовое пространство, потеряв 40% своего флота. Лунная база удержана. Кристалл Резонанса сохранён.</p>
+          <cite>— Итоговый рапорт по инциденту №13</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INCIDENT 14 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№14</span>
+        <span class="inc-title">«Крах Пустоты»</span>
+        <span class="inc-badge badge-green">Цитадель уничтожена</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Цитадель «Ахерон» · карманное измерение «Слепое пятно»</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Операция</div>
+            <div class="ov-value gold">Превентивный удар X-1 и X-10</div>
+          </div>
+        </div>
+
+        <div class="members-grid" style="margin:1.5rem 0; grid-template-columns: repeat(3, 1fr);">
+          <div class="member-card">
+            <div class="mc-id">КОМАНДИР I</div>
+            <div class="mc-name">Архитектор Распада (Ваал)</div>
+            <div class="mc-desc">Главный стратег, планировавший одновременный подрыв десяти порталов на Земле для разрыва связи Совет XI с Первоисточником.</div>
+          </div>
+          <div class="member-card">
+            <div class="mc-id">КОМАНДИР II</div>
+            <div class="mc-name">Мать Вирусов</div>
+            <div class="mc-desc">Женщина-сущность, создающая биологическое оружие против советников. Обезглавлена X-10 до выпуска токсинов.</div>
+          </div>
+          <div class="member-card">
+            <div class="mc-id">КОМАНДИР III</div>
+            <div class="mc-name">Нуль-Сенсор</div>
+            <div class="mc-desc">Существо без лица, видящее слабые места в защите Монады. Парализовано взглядом маски X-10. Захвачено живым.</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">ВТОРЖЕНИЕ</div>
+            <div>Используя расчёты X-8 через квантовые колебания, X-1 вычислил координаты Цитадели. Пространство в центральном зале взорвалось золотым и фиолетовым пламенем.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">БОЙ</div>
+            <div>МОГ X-00 прошла сквозь силовые поля противника через фазовый сдвиг. Гвардия X-0 методично зачищала Цитадель. X-1 выжигал Нуль-Эфир из тела Ваала энергией Первоисточника.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ИТОГ</div>
+            <div>Ваал и Нуль-Сенсор захвачены, телепортированы в Зал Приговоров. Цитадель «Ахерон» начала распадаться.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>«Вы осмелились планировать убийство того, кто дал вам жизнь. Вы — опухоль на теле реальности. И сегодня эта опухоль будет удалена.»</p>
+          <cite>— X-9 (Верховный Суд) на процессе над командирами Директората</cite>
+        </blockquote>
+
+        <blockquote>
+          <p>«Вы всего лишь цепные псы Администратора! Наше дело не умрёт! Пустота всё равно заберёт вас!»</p>
+          <cite>— Ваал (Архитектор Распада), последние слова</cite>
+        </blockquote>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Приговор: «Печать Безмолвия» + «Альфа-Омега»</span>
+          </div>
+          <div class="dept-body">
+            X-10 наложил «Печать Безмолвия», лишив осуждённых возможности даже кричать. X-1 направил на них сфокусированный луч установки «Альфа-Омега». Командиры Директората не просто умерли — они были стёрты из хронологии. Их имена, достижения и само воспоминание об их существовании исчезло из памяти обычных людей.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 15 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№15</span>
+        <span class="inc-title">«Великое Увядание — Древо Смерти»</span>
+        <span class="inc-badge badge-red">Угроза уровня HG · Глобальная</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Источник</div>
+            <div class="ov-value red">Магистр Энтропии Уль-Рик · последний командир Директората</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Сущность</div>
+            <div class="ov-value">Таумиэль-Антипод · «Древо Смерти»</div>
+          </div>
+        </div>
+
+        <p>Понимая, что его бойцы уничтожены, Уль-Рик нанёс удар экспериментальным клинком из «Нуль-Эфира» не по врагам — а по самой ткани пространства. Рана в реальности достигла «Нижнего Мира», откуда в нашу вселенную проросло Древо Смерти.</p>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Распространение хаоса · первые 6 часов</span>
+          </div>
+          <div class="dept-body">
+            <p style="margin-bottom:0.5rem;"><strong style="color:var(--gold); font-size:0.8rem;">НА ЗЕМЛЕ:</strong> Корни Древа прорывались сквозь города. Любое живое существо, коснувшееся ветвей, мгновенно высыхало, отдавая жизненную силу и память корням.</p>
+            <p style="margin-bottom:0.5rem;"><strong style="color:var(--gold); font-size:0.8rem;">В КОСМОСЕ:</strong> Ветви начали оплетать планеты и звёзды, выкачивая термоядерную энергию. Небо над Землёй затянула чёрная «паутина», сквозь которую не пробивался свет Солнца.</p>
+            <p><strong style="color:var(--red-bright); font-size:0.8rem;">СКОРОСТЬ:</strong> За 6 часов захвачено 15% обитаемых секторов. Споры начали проникать даже в цифровые сети Фонда.</p>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Линии жизни переплетаются с чёрными нитями. Если Древо расцветёт — реальность станет его удобрением.»</p>
+          <cite>— X-8 (Ткач), первый доклад об угрозе</cite>
+        </blockquote>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">X-5</div>
+            <div>
+              <div class="proto-title">X-5 и X-2 — Стазис-Кокон</div>
+              <div class="proto-body">Создали энергетическую сеть, замедлившую рост ветвей Древа.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">X-7</div>
+            <div>
+              <div class="proto-title">X-7 — Разрыв гравитационных связей</div>
+              <div class="proto-body">Отрывал корни Древа от планет, ограничивая его питание.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">X-1</div>
+            <div>
+              <div class="proto-title">X-1 — Ликвидация Уль-Рика</div>
+              <div class="proto-body">Наследник лично спустился к эпицентру разлома и одним движением превратил последнего Командира Директората в звёздную пыль. Однако Древо к тому моменту уже жило своей жизнью.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Решение: Заточение в «Пустоту №0»</span>
+          </div>
+          <div class="dept-body">
+            Совет XI принял решение об изгнании — уничтожить Древо было невозможно, оно стало частью экосистемы бытия. Используя совместную мощь и установку «Альфа-Омега», советники сфокусировали энергию в одну точку. X-10 и МОГ X-00 вошли в самый центр аномалии как «якоря», затолкав исполинскую сущность в Тюрьму Измерений «Пустота №0». С оглушительным пространственным хлопком Древо было вырвано из нашей реальности. Разлом запечатан семью печатями Администратора.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARD-X -->
+    <div class="dept-block" style="margin:2.5rem 0;">
+      <div class="dept-header">
+        <span class="dept-name">Разработка «Атласа»: Вирус PARD-X</span>
+        <span class="dept-curators">X-5 · Хранитель Генезиса</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">PARD-X — гибрид биологии и квантовой нестабильности. Последний довод Совета XI: если реальность нельзя спасти, она должна быть выжжена дочиста.</p>
+      </div>
+      <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+        <div class="rank-cell">
+          <div class="rank-num">ИНФЕКЦИОННОСТЬ</div>
+          <div class="rank-name">100%. Одной молекулы достаточно для запуска цепной реакции в любом организме.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">ЦЕЛЬ</div>
+          <div class="rank-name">Заражает технически «мёртвых» и существ из чистой энергии. Блокирует связь аномалий с источником сил, превращая «богов» в гниющую плоть.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">СИМПТОМЫ</div>
+          <div class="rank-name">Начинается как грипп. Через несколько часов — стадия «Клеточного Распада»: тело превращается в однородную серую массу.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 16 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№16</span>
+        <span class="inc-title">«Пандемия Пустоты»</span>
+        <span class="inc-badge badge-red">Глобальное заражение · PARD-X</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Глобальный масштаб / Зона 19</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Причина</div>
+            <div class="ov-value red">Теракт остатков Директората · транспортный узел Европы</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">УТЕЧКА</div>
+            <div>Во время транспортировки образца PARD-X контейнер был разбит в вентиляционной шахте крупнейшего транспортного узла Европы. Акт организован остатками Директората.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">РАСПРОСТР.</div>
+            <div>Обычные люди гибли миллионами. Никакие маски и карантины не помогали — вирус проходил сквозь любые фильтры. В Зоне 19 вспыхнула паника: SCP-682 впервые за века покрылся незаживающими язвами, а регенерация начала пожирать саму себя. Разумные объекты класса «Кетер» молили о смерти.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ОТВЕТ</div>
+            <div>X-1 активировал протокол «Стерильная Земля». X-5 создал «Сыворотку Анти-Икс», но для её работы требовалась колоссальная энергия.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">СТОП</div>
+            <div>X-10 использовал силы, чтобы остановить время в крупнейших мегаполисах, заморозив миллиарды людей в моменте последнего вздоха — вирус перестал распространяться.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ФИНАЛ</div>
+            <div>Используя мощь Монады, Совет XI провёл глобальную дезинфекцию атмосферы золотым излучением Первоисточника. Вирус подавлен, выжившие получили иммунитет.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>Инцидент №16 показал: Совет XI создал оружие, способное убить даже их самих.</p>
+          <cite>— Закрытая аналитическая записка «Атласа»</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- ERADICATION CONCERN -->
+    <div class="dept-block" style="margin:2.5rem 0;">
+      <div class="dept-header">
+        <span class="dept-name">Новая Фракция: «Концерн Искоренения» (The Eradication Concern)</span>
+        <span class="dept-curators">Уровень угрозы: ВЫСОКИЙ</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Коалиция из бывших учёных Фонда, дезертиров ГОК и людей, потерявших всё из-за аномалий. Почти равны Совету X по технологическому уровню — используют украденные чертежи «Альфа-Омеги», переделанные для разрушения.</p>
+      </div>
+      <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+        <div class="rank-cell">
+          <div class="rank-num">«СЛЕПОЕ ПЯТНО»</div>
+          <div class="rank-name">Оборудование, создающее «мёртвые зоны» реальности, куда не дотягивается свет Монады. Невидимы для божественного взора Совет XI.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">АРСЕНАЛ «АНТИ-ТЕЗИС»</div>
+          <div class="rank-name">Оружие, стреляющее «стабильностью». При попадании принудительно возвращает аномальные существа к законам обычной физики.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">КОМАНДИР</div>
+          <div class="rank-name">Позывной «Ноль». Инициировал операцию «Чёрный Протокол» — одновременную атаку на три крупнейшие Зоны Фонда.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 17 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№17</span>
+        <span class="inc-title">«Чёрный Протокол»</span>
+        <span class="inc-badge badge-orange">Отражено · Гвардия Ксенос</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Зона 19 / Зона 17 / Зона 01 — одновременно</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Противник</div>
+            <div class="ov-value red">Концерн Искоренения · «Ликвидаторы»</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">12:00</div>
+            <div>Системы «Паноптикум» внезапно ослепли. В коридорах крупнейших Зон открылись порталы — из них вышли «Ликвидаторы» Концерна в тяжёлой матовой броне, поглощающей любые энергетические атаки.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">БОЙНЯ</div>
+            <div>В Зоне 17 «Дезинтегратор Генезиса» превратил в пыль более 50 SCP-объектов вместе с камерами содержания. Обычные МОГ не могли дать отпор: их пули пробивали щиты, а броня врага была невосприимчива к магии.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ПРОРЫВ</div>
+            <div>Основная ударная группа Концерна прорвалась к залу телепортации в Монаду. Командир «Ноль» активировал бомбу «Искажения Реальности», способную аннигилировать Совет XI прямо в их креслах.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">МОГ X-0</div>
+            <div>50 гвардейцев телепортировались в гущу боя. Обладая «Квантовым Иммунитетом», они использовали копья, заряженные энергией Первоисточника. Каждое столкновение с оружием Ликвидаторов вызывало локальный коллапс пространства.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">КОНЕЦ</div>
+            <div>Командир МОГ X-0 активировал приказ «Запрет на Смерть» — поле, не позволявшее телам выживших сотрудников Фонда распасться. За 15 минут Гвардия полностью вырезала штурмовые отряды захватчиков.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>«Они сражаются за мир без аномалий. Они не понимают, что в этом новом мире им самим не будет места. Мы — стена, и сегодня эта стена устояла.»</p>
+          <cite>— Командир МОГ X-0 после боя</cite>
+        </blockquote>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CHAPTER 3 -->
+<section id="chapter3">
+  <div class="container">
+    <div class="section-eyebrow">Глава III — Новый Порядок</div>
+    <h2 class="section-title">Эпоха абсолютного контроля</h2>
+    <p style="margin-bottom:2rem; font-size:0.85rem; color:var(--text-dim);">Нажмите на инцидент для раскрытия подробностей.</p>
+
+    <!-- INCIDENT 18 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№18</span>
+        <span class="inc-title">«Затмение»</span>
+        <span class="inc-badge badge-red">Сверхсекретно · Допуск уровня XI</span>
+      </div>
+      <div class="inc-body">
+        <p>Собрание Совета O5 было созвано для обсуждения аномальной активности в секторе ДАИК и вопроса об отстранении X-11 от командования. Именно это заседание стало точкой невозврата для старого порядка Фонда.</p>
+
+        <div class="overview-grid" style="margin:1.5rem 0;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Зона 01 · Зал заседаний Совета O5</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Исполнитель</div>
+            <div class="ov-value gold">X-11 · Куратор «Чёрная Смерть»</div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">21:00</div>
+            <div>O5-1 инициирует голосование. В зале гаснет основное освещение. Резервные генераторы не запускаются, несмотря на исправность.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:03</div>
+            <div>Все электронные устройства в радиусе 500 метров начинают транслировать монотонный низкочастотный гул. В центре стола из чистого воздуха формируется фигура, поглощающая свет.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:05</div>
+            <div>Появление X-11. Из тени выходит Куратор «Чёрная Смерть» в тяжёлой броне ДАИК. Лицо скрыто зеркальной маской, за которой пульсирует холодное синее свечение.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:07</div>
+            <div>O5-5 пытается вызвать охрану. X-11 поднимает руку — все системы безопасности Зоны 01 переходят в режим «Лояльность XI». Двери блокируются.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:10</div>
+            <div>Личная охрана O5 открывает огонь. Пули аннигилируют, не долетая до X-11. В ответ Куратор активирует встроенную установку «Омега-Ноль».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:12</div>
+            <div><strong style="color:var(--red-bright);">Инцидент 18-A:</strong> O5-5 подвергается принудительной деконструкции. Его статус «Надзирателя» стирается из всех баз данных Фонда в реальном времени. Он превращается в «Никого» — присваивается номер D-05-005.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">21:15</div>
+            <div>Остальные члены Совета O5 принудительно приведены к присяге новому органу власти — Совету XI.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>«Ваше время истекло. Вы пытались содержать то, что должно было вами управлять. Теперь Монада смотрит на вас моими глазами.»</p>
+          <cite>— X-11, первая фраза, зафиксированная аудиодатчиками Зоны 01</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- AMNEZIAC KSI -->
+    <div class="dept-block" style="margin:2.5rem 0;">
+      <div class="dept-header">
+        <span class="dept-name">Инструмент контроля: Амнезиак класса «Кси» · Кодовое название «Тишина»</span>
+        <span class="dept-curators">X-11 · ДАИК</span>
+      </div>
+      <div class="dept-body">
+        <p style="margin-bottom:1rem;">Не является химическим соединением. Это высокочастотный инфо-сигнал, атакующий не биологию мозга, а каузальные связи человека — буквально «отрезающий» сознание от его прошлого. Источник: модуль в маске X-11 или стационарные излучатели в залах заседаний Совета XI.</p>
+      </div>
+      <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+        <div class="rank-cell">
+          <div class="rank-num">СТИРАНИЕ «Я»</div>
+          <div class="rank-name">Сохраняет интеллект и боевые навыки, но полностью аннигилирует эго. Субъект начинает воспринимать себя как функцию: «Я — инструмент Совета».</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">ИММУНИТЕТ К ВОССТАНОВЛЕНИЮ</div>
+          <div class="rank-name">Стёртую память невозможно вернуть ни амнезиаками класса W, ни аномальными объектами, ни телепатией. Информации больше не существует в ноосфере.</div>
+        </div>
+        <div class="rank-cell">
+          <div class="rank-num">СЕНСОРНАЯ БЛОКИРОВКА</div>
+          <div class="rank-name">При попытке заговорить о запретных темах голосовые связки временно парализует, а зрение застилает чёрная пелена.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY: ECHO OF EMPTY CORRIDORS -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">ЛОГ</span>
+        <span class="inc-title">«Эхо Пустых Коридоров»</span>
+        <span class="inc-badge badge-orange">Внутреннее сопротивление · Ликвидировано</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Сверхсекретный архив Зоны 19</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Угроза</div>
+            <div class="ov-value red">Оперативники МОГ, верные старому Совету O5</div>
+          </div>
+        </div>
+
+        <p>Группа архивных сотрудников и оперативников МОГ, верных старому Совету O5, решились на «цифровой побег» — попытку выкрасть зашифрованные данные о настоящих именах членов O5, чтобы восстановить их власть и доказать, что X-11 — узурпатор.</p>
+
+        <div class="timeline" style="margin:1.5rem 0;">
+          <div class="tl-row">
+            <div class="tl-time">ВХОД</div>
+            <div>Мятежники добираются до архивного терминала. Свет в архиве становится не красным (тревога), а мертвенно-синим.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ЯВЛЕНИЕ</div>
+            <div>В конце коридора появляется X-11. Он не бежит и не стреляет — просто идёт вперёд. Каждый его шаг отдаётся в головах мятежников звуком разбитого стекла.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">АУРА</div>
+            <div>Один из оперативников нажимает на курок — автомат в его руках рассыпается в серый пепел. Сработала локальная аура аннигиляции X-11.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">X-10</div>
+            <div>Из теней материализуется Тень. Не произнося ни звука, касается каждого из них. Глаза людей белеют — из памяти мгновенно стирается цель визита, их имена и сам факт существования сопротивления.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ФИНАЛ</div>
+            <div>Через пять минут те же оперативники стоят в строю Гвардии Ксенос. Данные о Совете O5 в базе данных заменены на пустые страницы.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Вы ищете имена тех, кого больше нет. O5-5 теперь — лишь цифры на робе D-класса. Ваша верность — это ошибка в коде, которую я сейчас исправлю.»</p>
+          <cite>— X-11, архив Зоны 19</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- LOG 001-XI -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">ЛОГ 001-XI</span>
+        <span class="inc-title">«Эхо Заложенного Камня»</span>
+        <span class="inc-badge badge-green">Атака отражена · ГОК нейтрализован</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Зал «Одиссей» · Сектор Монада · Зона 19</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Противник</div>
+            <div class="ov-value red">Отряд ГОК «Физикс» · аномальное вооружение</div>
+          </div>
+        </div>
+
+        <p>После Инцидента №18 и утверждения «Нового Порядка» Совет XI собрался в полном составе для финализации Протокола «Перековка». Информация засекречена на уровне Омега — но утечка произошла на метафизическом уровне.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">03:00</div>
+            <div>Заседание началось. X-11 произносит вступительную речь о «Неизбежности Единой Воли».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">03:15</div>
+            <div>X-4 («Стиратель») прерывает X-11: <em>«У нас гости. Незваные. Слишком много "мяса" в периметре».</em> X-10 материализуется за спиной X-11, активируя защитные системы Зала.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">03:18</div>
+            <div>Прорыв: боевые корабли ГОК с маскировочными полями пробивают внешний периметр. Команда «Физикс» высаживается через телепортационные заряды прямо на поверхность Монады. Применяют анти-эфирное вооружение и гранаты с временными искажениями.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">03:20</div>
+            <div>МОГ X-00 «Судьи Истока» перехватывают ГОК в кристаллических коридорах. Броня адаптируется к урону. Ментальные атаки и подавление сознания — агенты ГОК испытывают паническую дезориентацию. X-10 нейтрализует офицеров до их реакции.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">03:25</div>
+            <div>Элитный отряд ГОК почти прорывается к Залу «Одиссей». X-11 поднимает руку — инфо-сигнал из маски. Агенты падают на колени. Воздействие амнезиака класса «Кси».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">03:27</div>
+            <div><strong style="color:var(--red-bright);">Инцидент 001-XI-A:</strong> Часть агентов видит «Истинное Лицо Ксеноса» — немедленная необратимая когнитивная деградация. Все силы ГОК нейтрализованы. Ни один не погиб обычным способом.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>Ни один агент ГОК не был убит обычным способом. Все были либо парализованы, либо их личности стёрты. МОГ X-00 провела зачистку в полной тишине.</p>
+          <cite>— Итоговый протокол Лога 001-XI</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INCIDENT 19 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№19</span>
+        <span class="inc-title">«Схлопывание Датского Узла»</span>
+        <span class="inc-badge badge-green">Темпоральная коррекция завершена</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Объект вмешательства</div>
+            <div class="ov-value">Датско-Норвежская колониальная империя, 1721 г.</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Причина</div>
+            <div class="ov-value red">Темпоральный прорыв «Духов Империи» из 2029 г.</div>
+          </div>
+        </div>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">X-0</div>
+            <div>
+              <div class="proto-title">МОГ X-0 «Гвардия Ксенос» — охрана периметра реальности</div>
+              <div class="proto-body">Под командованием X-10 (Тень) блокирует все выходы из дворца Фредерика IV. Солдаты датской гвардии не уничтожаются физически — присутствие X-0 «выключает» их из пространства: застывают, лишённые воли, становясь частью интерьера.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">X-00</div>
+            <div>
+              <div class="proto-title">МОГ X-00 «Судьи Истока» — фаза «Иммунный Ответ»</div>
+              <div class="proto-body">В 12:40 «Духи Империи» из 2029 года прорываются в 1721 год, пытаясь атаковать X-1 и создать временной парадокс. Судьи вступают в бой в «Истоке» — пространстве причинно-следственных связей. Каждый уничтоженный дух убирает один кирпич колониальной системы: корабли гниют в доках за секунды, карты превращаются в чистую бумагу.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">ТОЧКА ВХОДА</div>
+            <div>Копенгаген, 3 июля 1721 г. Совет XI материализуется в тронном зале Фредерика IV через «Монаду». Паралич реальности в радиусе 5 км.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ФИНАЛ</div>
+            <div>Под давлением Администратора Фредерик IV подписывает документ, юридически и метафизически упраздняющий флот и колониальные амбиции Дании. «Судьи Истока» окончательно вырезают концепцию датской экспансии из ноосферы.</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>Мир не заметил разницы. Он никогда о ней не знал.</p>
+          <cite>— Закрытый отчёт Совета XI по операции №19</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INCIDENT 20 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№20</span>
+        <span class="inc-title">«Кровавое Эхо Империи»</span>
+        <span class="inc-badge badge-red">Нападение на высший командный состав</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Конец XIX в. · Российская Империя · Zona-001</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Противник</div>
+            <div class="ov-value red">SCP-ЦАРЬ-01 «Костяные Наместники»</div>
+          </div>
+        </div>
+
+        <p>Существа из чёрного дыма и цепей, сформированные из боли тысяч узников тайных тюрем Империи. Во время переговоров в 2045 году они пробили пространство «Монады» и захватили X-9 и O5-1, совершив хроно-рывок в точку зарождения первого российского Фонда.</p>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Zona-001 — обнаруженная обстановка</span>
+          </div>
+          <div class="dept-body">
+            Официально — оплот науки Российской Империи. В реальности — живой организм из гниющей плоти и меди. «Адаптивные трупы» восстали из подвалов, возглавляемые коллективным разумом, жаждущим мести тем, кто «удерживает и сохраняет». X-9 и O5-1 помещены в «Клетку Греха» — устройство, выкачивающее их знания о будущем для переписывания истории.
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">ШТУРМ</div>
+            <div>Гвардия X-0 без артиллерии — стандартное оружие уничтожило бы реальность Петербурга. Бойцы создавали зоны «чистого вакуума», где Сущности распадались без возможности подпитываться страхом.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">УР. 3</div>
+            <div>Гвардия столкнулась с «Гвардией Мертвецов» — солдатами имперского Фонда, слитыми с паровыми машинами. Стены коридоров превращались в зубастые пасти.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ПЕРЕЛОМ</div>
+            <div>Сущности попытались использовать энергию O5-1 для коллапса линии времени. X-10 применил запрещённое оружие «Свет Истины» — осветил все подвалы Империи, разорвав связь Сущностей с миром живых.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ИТОГ</div>
+            <div>X-9 и O5-1 извлечены в критическом состоянии. Zona-001 стёрта из реальности. В учебниках истории — «пустырь, на котором так и не построили архив».</div>
+          </div>
+        </div>
+
+        <blockquote style="margin-top:1.5rem;">
+          <p>«Их крик был громче тысячи солнц. Они не хотели власти. Они хотели, чтобы будущего никогда не наступило. Мы применили Парадокс-0. Если империи суждено пасть — она падёт от рук людей, а не от рук этой грязи.»</p>
+          <cite>— X-10 (Тень), полевой лог операции №20</cite>
+        </blockquote>
+
+        <div class="members-grid" style="margin:1.5rem 0; grid-template-columns: repeat(2,1fr);">
+          <div class="member-card">
+            <div class="mc-id">ПОСЛЕДСТВИЕ I</div>
+            <div class="mc-name">Союз Высших</div>
+            <div class="mc-desc">Инцидент №20 вынудил Совет XI и Совет O5 подписать пакт о взаимопомощи. O5-1 признал: без Гвардии Ксенос он был бы окончательно стёрт.</div>
+          </div>
+          <div class="member-card">
+            <div class="mc-id">ПОСЛЕДСТВИЕ II</div>
+            <div class="mc-name">Способность X-9</div>
+            <div class="mc-desc">X-9 обрёл способность «видеть мёртвых», сделавшую его ещё эффективнее. Его разум теперь постоянно слышит шёпот тех самых подвалов Империи.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section id="chapter4">
+  <div class="container">
+    <div class="section-eyebrow">Глава IV — Эхо мёртвых</div>
+    <h2 class="section-title">Апокалипсис, Искупление и Новый Порядок</h2>
+
+    <p>После событий Инцидента №20 Совет XI столкнулся с последствиями, которые не мог предвидеть ни один аналитик. «Корень» угрозы остался нетронутым в XIX веке — и он дал плоды. Глава IV описывает самый тёмный период в истории Совета: глобальную пандемию информационно-темпорального патогена, рождение МОГ X-99, захват Ватикана и окончательное утверждение тотального контроля над реальностью.</p>
+
+    <!-- INCIDENT 21 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№21</span>
+        <span class="inc-title">«Великая Тьма»</span>
+        <span class="inc-badge badge-red">⚠ Конец Света · Класс К-1 · Глобальное нарушение сдерживания</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Объект</div>
+            <div class="ov-value red">SCP-21-RU-Ω — Межпространственный патоген</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Уровень угрозы</div>
+            <div class="ov-value red">Чёрный · К-1 · Глобальный</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Нулевой пациент</div>
+            <div class="ov-value">Боец МОГ X-0 · Зона «Монада» · 15.09.2045</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Первые павшие города</div>
+            <div class="ov-value red">Вашингтон · Москва · Киев</div>
+          </div>
+        </div>
+
+        <p>15 сентября 2045 года, спустя три дня после возвращения Гвардии X-0 из прошлого, один из бойцов на посту у дверей Совета XI внезапно замер. Его доспехи начали плавиться, превращаясь в чёрную слизь. Из-под шлема раздался хохот тысяч голосов. Прежде чем системы защиты среагировали, боец испарился, выбросив в вентиляцию облако спор.</p>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Природа патогена SCP-21-RU-Ω</span>
+            <span class="dept-curators">Классификация: «Вестники Ямы»</span>
+          </div>
+          <div class="dept-body">Вирус не является биологическим. Он информационно-темпоральный: передаётся через взгляд, через звук и через радиоволны. Жертвы мутируют циклически каждую полночь.</div>
+          <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+            <div class="rank-cell">
+              <div class="rank-num">ДЕНЬ 1–3</div>
+              <div class="rank-name">Сохраняют разум, теряют волю. Агрессивный каннибализм.</div>
+            </div>
+            <div class="rank-cell">
+              <div class="rank-num">ДЕНЬ 4–7</div>
+              <div class="rank-name">Плоть заменяется «имперским металлом». Невосприимчивы к пулям.</div>
+            </div>
+            <div class="rank-cell">
+              <div class="rank-num">ДЕНЬ 10+</div>
+              <div class="rank-name">Объединяются в «мясные башни», транслирующие сигналы безумия в радиусе километра.</div>
+            </div>
+          </div>
+        </div>
+
+        <p>Вирус пришёл из «подвалов империи», и потому в первую очередь поразил места с наибольшей концентрацией исторической памяти. Зомби используют микро-разломы — следы телепортации Гвардии Ксенос — чтобы «просачиваться» сквозь пространство, минуя карантинные кордоны армий.</p>
+
+        <table class="hier-table" style="margin:1.5rem 0;">
+          <thead>
+            <tr>
+              <th>Сектор</th>
+              <th>Статус</th>
+              <th>Уровень заражения</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Зона-7 (Научный центр)</td>
+              <td style="color:var(--red-bright);">ПОТЕРЯНА</td>
+              <td>100% — SCP-682 примкнул к орде</td>
+            </tr>
+            <tr>
+              <td>Москва</td>
+              <td style="color:var(--red-bright);">В ТЬМЕ</td>
+              <td>85%</td>
+            </tr>
+            <tr>
+              <td>Монада (Штаб)</td>
+              <td style="color:#d4872a;">ОСАДА</td>
+              <td>Внешний периметр прорван «Вестниками»</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="members-grid" style="grid-template-columns: repeat(2,1fr); margin: 1.5rem 0;">
+          <div class="member-card">
+            <div class="mc-id">СОСТОЯНИЕ · X-9</div>
+            <div class="mc-name">Советник-Маяк</div>
+            <div class="mc-desc">X-9, захваченный в Инциденте №20, стал «Маяком». Стены его покоев начали покрываться лицами существ из петербургских подвалов. Его шёпот теперь — несущая частота вируса.</div>
+          </div>
+          <div class="member-card">
+            <div class="mc-id">СОСТОЯНИЕ · X-0</div>
+            <div class="mc-name">Деморализованная Гвардия</div>
+            <div class="mc-desc">МОГ X-0 деморализована: их собственное оружие питает вирус, поскольку патоген состоит из той же материи, что и способности Гвардии Ксенос.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Мы создали этот вирус. Каждый прыжок сквозь время, каждый удар теневым клинком — мы оставляли трещины. А из трещин выходят вещи, для которых у нас нет имён.»</p>
+          <cite>— X-10 (Тень), дневник Осады Монады, 15.09.2045</cite>
+        </blockquote>
+
+        <p>Администратор отдал приказ о подготовке к протоколу <strong style="color:var(--gold);">«Tabula Rasa»</strong> — полному стиранию текущей временной линии. Однако для активации необходимо, чтобы кто-то из Совета XI спустился в эпицентр: в подвалы под Петербургом, в XIX век, где остался «корень» вируса.</p>
+      </div>
+    </div>
+
+    <!-- MOG X-99 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">МОГ X-99</span>
+        <span class="inc-title">«Белое Пламя Искупления»</span>
+        <span class="inc-badge badge-green">Высший резерв · Подчинение: Администратор / X-9 / X-1</span>
+      </div>
+      <div class="inc-body">
+        <p>Если МОГ X-0 — это «Тень», а Судьи X-00 — это «Время», то X-99 — это <em>«Чистая Энергия Идеи»</em>. Группа создана в условиях строжайшей секретности, в глубоком вакуумном стазисе, о котором не знали даже большинство Советников.</p>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Происхождение и природа бойцов</span>
+          </div>
+          <div class="dept-body">В состав X-99 входят не люди, а «информационные конструкты» — сознания лучших оперативников прошлого, перенесённые в искусственные тела из аномального белого сплава. Он не подвержен биологическому или темпоральному заражению.</div>
+        </div>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">I</div>
+            <div>
+              <div class="proto-title">Световые резаки «Прометей»</div>
+              <div class="proto-body">Оружие сжигает существ на молекулярном уровне. Уничтожает не только тело, но и «информационный след» — останки не могут срастаться заново.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">II</div>
+            <div>
+              <div class="proto-title">Генераторы «Поля Отрицания»</div>
+              <div class="proto-body">Каждый боец излучает ауру в радиусе 20 метров, вводящую сущностей в ступор. Вирус внутри этого поля «забывает», что он должен делать.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">III</div>
+            <div>
+              <div class="proto-title">Иммунитет «Нулевой Точки»</div>
+              <div class="proto-body">Бойцы X-99 не имеют биологических тел. Для зомби и любых инфекций они — пустое место. Невидимые объекты, ибо в них нет жизни, которую можно поглотить.</div>
+            </div>
+          </div>
+        </div>
+
+        <table class="mog-table">
+          <thead>
+            <tr>
+              <th>Подразделение</th>
+              <th>Специализация</th>
+              <th>Роль в кризисе</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tier-pill">X-0</span> Гвардия Ксенос</td>
+              <td>Тайные операции и Тень</td>
+              <td style="color:var(--red-bright);">Потерпели неудачу — стали источником вируса</td>
+            </tr>
+            <tr>
+              <td><span class="tier-pill">X-00</span> Судьи Истока</td>
+              <td>Защита ткани времени</td>
+              <td>Удерживают реальность от полного коллапса</td>
+            </tr>
+            <tr>
+              <td><span class="tier-pill">X-99</span> Белое Пламя</td>
+              <td>Аннигиляция аномальной заразы</td>
+              <td style="color:#7db355;">Единственная сила, способная уничтожить пандемию</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- INCIDENT 22 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№22</span>
+        <span class="inc-title">«Звезда над Монадой»</span>
+        <span class="inc-badge badge-green">Угроза уровня «Зеро» нейтрализована · 21.10.2045</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Дата</div>
+            <div class="ov-value">21 октября 2045 года</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Цель операции</div>
+            <div class="ov-value gold">Ликвидация SCP-22-RU-PRIME «Патриарх Гнили»</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Место финального удара</div>
+            <div class="ov-value">Красная Площадь · Москва</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Задействованы МОГ</div>
+            <div class="ov-value">X-0 · X-00 · X-99 · под командованием X-1 и X-11</div>
+          </div>
+        </div>
+
+        <p>К 20 октября пали последние оплоты сопротивления в США и Европе. Вирус мутировал, породив SCP-22-RU-PRIME — колоссальное существо ростом с пятиэтажный дом, сотканное из сотен тел. Его рык — низкочастотный ультразвук, служащий маяком. Миллионы зомби со всего мира двинулись к скрытым координатам Монады.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">ПРОРЫВ</div>
+            <div>Орда под командованием «Патриарха» достигла штаба. X-0 и X-00 заняли круговую оборону. Коридоры превратились в мясорубку. Когда «Патриарх» нанёс удар по главным вратам — целостность реальности внутри штаба пошатнулась.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ПРОБУЖДЕНИЕ</div>
+            <div>Из нижних уровней Монады — из Сектора «G24», о существовании которого знали лишь X-9, X-11, X-1 и Администратор — раздался леденящий крик. Это был X-11 «Чёрная Смерть». Его крик не нёс вреда живым, но для вируса стал сигналом «Смерти».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ВОССОЕДИНЕНИЕ</div>
+            <div>Впервые в истории три высшие группы — X-0, X-00, X-99 — сражались плечом к плечу под командованием X-1 и X-11. X-0 и X-11 зачищали коридоры, превращая зомби в пепел. X-99 и X-00 совершили телепортационный прыжок на Красную Площадь.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ИМПУЛЬС</div>
+            <div>X-99 создали купол ослепительного света. X-00 удерживали временной поток, не давая «Патриарху» мутировать. Наследник (X-1) лично вставил командный ключ. «Импульс Искупления» прошёл по всей планете — все заражённые мгновенно впали в анабиоз.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ПРЫЖОК</div>
+            <div>X-99 под командованием X-11 ушли в 1890-е в Zona-001. X-00 вернулись в 1721 год — к моменту Инцидента №19. Цель: окончательная аннигиляция корня вируса в прошлом.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ЭФФЕКТ «ДОМИНО»</div>
+            <div>Как только корень в XIX веке был уничтожен, застывшие на улицах городов зомби начали рассыпаться в пыль, исчезавшую прежде, чем оседала. Вирус перестал существовать во всех временных точках одновременно. Заражённые, не успевшие превратиться, пришли в себя — полностью исцелённые «Белым Пламенем».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ВОЗВРАЩЕНИЕ</div>
+            <div>На Красной Площади открылся разлом. Из него вышли X-99 и X-00. Белые доспехи покрыты трещинами от колоссального давления времени. X-11 «Чёрная Смерть» шёл впереди, неся в руках погасший артефакт — то, что осталось от сердца Zone-001.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Мы не просто лечим болезнь. Мы вырываем страницу из книги истории, на которой эта болезнь была написана. Если мы не вернёмся — значит, мы справились.»</p>
+          <cite>— X-11 «Чёрная Смерть», перед финальным прыжком</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- ВПСП / УВБП -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">СТРУКТУРЫ</span>
+        <span class="inc-title">ВПСП и УВБП — Аппарат Тотального Контроля</span>
+        <span class="inc-badge badge-orange">Введено после Инцидента №24</span>
+      </div>
+      <div class="inc-body">
+        <p>Для управления умами миллионов людей в восстанавливаемом мире Совет XI сформировал единственную официальную политическую силу и карательный орган.</p>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">ВПСП — Всесоюзная Партия Содержания и Прогресса</span>
+            <span class="dept-curators">Глава: Наследник X-1</span>
+          </div>
+          <div class="dept-body">
+            Занимает отдельное крыло в Монаде, соединённое с «Сердцем Монады». Благодаря слиянию Наследника, стены партийных кабинетов буквально «слышат» шёпот в любом коридоре Фонда.
+          </div>
+        </div>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">I</div>
+            <div>
+              <div class="proto-title">Снятие Директоров</div>
+              <div class="proto-body">Тройка Комиссаров вправе отстранить Директора Зоны на месте, объявив его «идеологически несостоятельным», и отправить на переаттестацию — или в камеры содержания.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">II</div>
+            <div>
+              <div class="proto-title">Надзор за X-0</div>
+              <div class="proto-body">У куратора есть «красная кнопка» — дистанционный детонатор или код амнезиака, если солдат начнёт проявлять лояльность командиру выше, чем Партии.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">III</div>
+            <div>
+              <div class="proto-title">Синхронизация с X-99</div>
+              <div class="proto-body">Партия проверяет чистоту «светового кода» бойцов, чтобы в их искусственном разуме не возникло системных ошибок или зачатков человеческих чувств.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">УВБП — Управление Внутренней Безопасности и Правопорядка</span>
+            <span class="dept-curators">Подчинение: X-10 (Тень) · Партия ВПСП</span>
+          </div>
+          <div class="dept-body">
+            Полноценная полицейская структура внутри всех объектов Фонда. Обычная охрана следит за SCP-объектами. УВБП следит за тем, чтобы сотрудники не нарушали устав, не воровали аномальные ресурсы и не контактировали с нелегальными лицами.
+          </div>
+          <div class="dept-ranks" style="grid-template-columns: repeat(3,1fr);">
+            <div class="rank-cell">
+              <div class="rank-num">АРЕСТ</div>
+              <div class="rank-name">Задержание любого, от уборщика класса D до Директора Зоны, без объяснений на 72 ч.</div>
+            </div>
+            <div class="rank-cell">
+              <div class="rank-num">СЛЕДСТВИЕ</div>
+              <div class="rank-name">Изолятор в Монаде, где время течёт иначе — допросы становятся бесконечными.</div>
+            </div>
+            <div class="rank-cell">
+              <div class="rank-num">«ЗАСЛОН-XI»</div>
+              <div class="rank-name">Силовое крыло. Нейропаралитические гранаты, «кандалы реальности», блокирующие аномальные способности.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dept-block" style="margin:1.5rem 0;">
+          <div class="dept-header">
+            <span class="dept-name">Приоритет Исполнительной Воли — Иммунитет УВБП</span>
+          </div>
+          <div class="dept-body">
+            Ни один офицер ОВБ, какой бы пост он ни занимал, не имеет права задержать или досмотреть сотрудника УВБП. Попытка наставить оружие на оперативника «Заслона» или потребовать у него документы приравнивается к вооружённому мятежу и карается <span style="color:var(--red-bright);">смертью на месте</span>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 23 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№23</span>
+        <span class="inc-title">«Операция: Чистый Горизонт»</span>
+        <span class="inc-badge badge-orange">42 сотрудника · 12 нелегалов · арестованы</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Зона на Дальнем Востоке</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Суть</div>
+            <div class="ov-value red">Нелегальная продажа аномалий местным жителям</div>
+          </div>
+        </div>
+
+        <p>Сотрудники научного отдела тайно продавали мелкие аномалии, способные исцелять болезни, местным жителям в обмен на золото и дефицитные товары. УВБП внедрило агента под видом лаборанта.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">03:00</div>
+            <div>Подразделение «Заслон-XI» ворвалось в жилой блок Зоны. Арестованы 42 сотрудника и 12 гражданских «нелегалов».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">СЛЕДСТВИЕ</div>
+            <div>Директор Зоны пытался заступиться за учёных, утверждая, что те делали это ради «блага людей». Комиссар УВБП лично сорвал с него погоны и приказал арестовать за «пособничество нелегальной деятельности».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ИТОГ</div>
+            <div>Все задержанные переведены в Сектор «Тартар» в Монаде. Во всех Зонах введён «Сухой закон на аномалии»: любое использование объекта вне протокола приравнивается к государственной измене.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 24 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№24</span>
+        <span class="inc-title">«Предел Полномочий»</span>
+        <span class="inc-badge badge-red">Расформирование ОВБ Зоны-02 · Прямой контроль УВБП установлен</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Локация</div>
+            <div class="ov-value">Зона-02 — стратегический объект</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Участники</div>
+            <div class="ov-value red">ОВБ Зоны против Следственной группы УВБП</div>
+          </div>
+        </div>
+
+        <p>Следственная группа УВБП прибыла для изъятия секретных архивов по делу о «нелегальных контактах» Директора. Начальник ОВБ Зоны, будучи верным своему Директору, приказал заблокировать лифты и не пускать «чужаков» в архив.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">КОНФЛИКТ</div>
+            <div>Бойцы ОВБ окружили троих следователей УВБП, направив на них штурмовые винтовки. Начальник ОВБ потребовал сдать оружие: <em>«Вы в моей Зоне. Здесь закон — это я.»</em></div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">КОД МАГИСТРАТ</div>
+            <div>Старший следователь УВБП активировал сигнал. Через 15 секунд в холле архива, используя живое пространство Монады, материализовалось подразделение «Заслон-XI».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">РАСПРАВА</div>
+            <div>Нейропаралитические гранаты мгновенно обездвижили весь гарнизон ОВБ. Тех, кто успел нажать на спуск, ликвидировали точечными выстрелами.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">ИТОГ</div>
+            <div>Весь отдел ОВБ Зоны-02 расформирован. Участники инцидента понижены до класса D или отправлены на «стирание личности». УВБП установило постоянный пост, взяв объект под прямой полицейский контроль Монады.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 25 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№25</span>
+        <span class="inc-title">«Падение Креста и Глаз Сармата»</span>
+        <span class="inc-badge badge-red">Ватикан уничтожен · Святоград основан · 11.02.2031</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Конфликт</div>
+            <div class="ov-value">Совет XI против Государства Ватикан и Ордена «Святого Щита»</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Причина</div>
+            <div class="ov-value red">Активация SCP-001-ВАТ «Труба Апокалипсиса» против Монады</div>
+          </div>
+        </div>
+
+        <p>После того как УВБП вскрыло секретные каналы связи между коалицией НАТО и Ватиканом, выяснилось, что Папа Римский готовил активацию объекта SCP-001-ВАТ — с целью стереть Совет XI из реальности, назвав их «антихристами от науки».</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">УЛЬТИМАТУМ</div>
+            <div>Совет XI потребовал полной сдачи всех аномалий в течение 24 часов. Ватикан ответил отказом, рассчитывая на защиту «святых барьеров».</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">УДАР «САРМАТ-К»</div>
+            <div>Ракеты несли «анти-материальные боеголовки», нейтрализующие любые магические и аномальные щиты. За 10 минут все укрепления вскрыты. Святой Престол провалился под землю в специально созданные пустоты.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">СВЯТОГРАД</div>
+            <div>На руинах Рима и Ватикана основано новое государственное образование — Святоград: закрытая суверенная территория под прямым управлением Совета XI. База «Монада-Юг» построена прямо под Собором Святого Петра.</div>
+          </div>
+        </div>
+
+        <div class="monada-grid" style="margin:1.5rem 0;">
+          <div class="monada-card">
+            <div class="mc2-icon">⚙</div>
+            <div class="mc2-title">Промышленная мощь</div>
+            <div class="mc2-body">50% производственных мощностей по созданию тяжёлых вооружений, брони МОГ и компонентов «Сармат» перенесено в Святоград.</div>
+          </div>
+          <div class="monada-card">
+            <div class="mc2-icon">📦</div>
+            <div class="mc2-title">Хранилище реликвий</div>
+            <div class="mc2-body">Все SCP-объекты, которые Ватикан прятал веками, теперь каталогизированы и служат науке Совета XI.</div>
+          </div>
+          <div class="monada-card">
+            <div class="mc2-icon">⚡</div>
+            <div class="mc2-title">Монада-Юг</div>
+            <div class="mc2-body">Самый мощный центр по переработке аномальной энергии в Европе.</div>
+          </div>
+          <div class="monada-card">
+            <div class="mc2-icon">🎓</div>
+            <div class="mc2-title">Университет Новой Этики</div>
+            <div class="mc2-body">ВПСП готовит здесь будущих руководителей мира — исключительно на службу Совету XI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 26 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№26</span>
+        <span class="inc-title">«Сломанный Трезубец»</span>
+        <span class="inc-badge badge-green">ПХ и ГОК уничтожены · Монако и Сейшелы аннексированы · 12.02.2031</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Агрессоры</div>
+            <div class="ov-value red">Повстанцы Хаоса + тактические группы ГОК</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Цели атаки</div>
+            <div class="ov-value">Зона-88 (Монако) · Зона-03 (Сейшелы)</div>
+          </div>
+        </div>
+
+        <p>Последняя отчаянная попытка независимых аномальных организаций захватить стратегические ресурсы Фонда до наступления «Партийного Порядка». Повстанцы Хаоса материализовались в жилых кварталах Монако. Флот ГОК нанёс ракетный удар по береговой линии Сейшел.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">В МОНАКО</div>
+            <div>Среди казино и роскошных отелей возникли ослепительные колонны света. 12 бойцов X-99 прошли сквозь шквальный огонь, не получив ни царапины. Световые резаки «Прометей» распылили тяжёлые танки агрессоров.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">НА СЕЙШЕЛАХ</div>
+            <div>Группа X-99 материализовалась прямо на палубах флагманов ГОК. За 5 минут экипажи парализованы «Полем Отрицания», системы кораблей переподчинены Монаде.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">АННЕКСИЯ</div>
+            <div>Монако объявлено «Экстерриториальной Зоной Финансового Контроля». Сейшелы закрыты для гражданского судоходства и авиации — ныне Главная Военно-Морская База МОГ. Богатейшие люди мира обязаны жертвовать 80% активов в «Фонд Искупления».</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Повстанцы Хаоса и ГОК понесли невосполнимые потери. Весь мир увидел: для МОГ X-99 не существует ни границ, ни расстояний.»</p>
+          <cite>— Оперативная сводка УВБП, 12.02.2031</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INCIDENT 27 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№27</span>
+        <span class="inc-title">«Стальной Завет»</span>
+        <span class="inc-badge badge-orange">Испытания систем «Глобального Сдерживания» · 15.03.2031</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Святоград · база «Монада-Юг»</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Развёрнуто</div>
+            <div class="ov-value gold">700 танков Т-95 «Космос» · 3 крейсера TZ-19 · 12 ракет РС-28К «Сармат-К»</div>
+          </div>
+        </div>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">Земля</div>
+            <div>
+              <div class="proto-title">700 танков Т-95 «Космос»</div>
+              <div class="proto-body">Непрерывная сеть Гравитационных щитов вокруг Святограда. Город вибрирует от гула сотен аннигиляционных реакторов.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">Небо</div>
+            <div>
+              <div class="proto-title">Три крейсера TZ-19 «COSMOS»</div>
+              <div class="proto-body">Зависли на высоте 5 км над Собором Святого Петра. Создали в небе искусственное сияние. Система «Сфера» — купол, непроницаемый для ядерного и аномального оружия.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">Подземля</div>
+            <div>
+              <div class="proto-title">12 ракет РС-28К «Сармат-К»</div>
+              <div class="proto-body">Наведены на ключевые аномальные зоны планеты в качестве «гарантии мира». Время до гарантированного уничтожения — 4 минуты. Квантовые модуляторы обходят любые системы ПРО.</div>
+            </div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Святоград — это сердце нового мира. 700 стволов Т-95 — это его пульс. TZ-19 в небе — это его глаза. Любой, кто оспорит волю Совета, столкнётся не с армией, а с физическим законом уничтожения.»</p>
+          <cite>— Манифест ВПСП, 15.03.2031</cite>
+        </blockquote>
+
+        <div class="overview-grid" style="margin:1.5rem 0 0;">
+          <div class="ov-cell">
+            <div class="ov-label">Производство</div>
+            <div class="ov-value gold">100 танков Т-95 в неделю</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Вероятность успешного нападения на Святоград</div>
+            <div class="ov-value red">0.00001%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 28 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№28</span>
+        <span class="inc-title">«Тень над Миром»</span>
+        <span class="inc-badge badge-green">F-01 «Фантом» принят на вооружение · 20.04.2031</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Событие</div>
+            <div class="ov-value gold">Принятие F-01 «Фантом» и первый боевой вылет</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Противник</div>
+            <div class="ov-value red">«Призрачный флот» Повстанцев Хаоса · Атлантика</div>
+          </div>
+        </div>
+
+        <p>Перед строем из 700 танков Т-95 и под сенью зависших крейсеров TZ-19 Наследник представил первую эскадрилью «Фантомов». 12 истребителей взлетели вертикально, активировали систему «Призрак» и буквально растворились в чистом небе — радары на максимуме показали пустой экран.</p>
+
+        <div class="timeline">
+          <div class="tl-row">
+            <div class="tl-time">ПЕРЕХВАТ</div>
+            <div>Звено из четырёх F-01 вылетело с крейсера TZ-19. Через нейроинтерфейс «Монада-Линк» пилоты видели тепловые сигнатуры врага сквозь аномальный туман как днём.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">АТАКА</div>
+            <div>Не выходя из режима невидимости, «Фантомы» применили подфюзеляжные дезинтеграторы. С неба ударили столбы тёмной энергии, беззвучно обращая палубы авианосцев в расплавленный шлак. Защитные системы врага не успели навестись — для них это выглядело как природная катастрофа.</div>
+          </div>
+          <div class="tl-row">
+            <div class="tl-time">УЛЬТИМАТУМ</div>
+            <div>Один F-01 на гиперзвуковой скорости пролетел над столицами крупнейших стран, выбив стёкла в правительственных зданиях звуковым ударом.</div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Отныне небо — это территория Монады. Любой объект, набравший высоту более 10 метров без цифрового ключа УВБП, будет считаться целью. Мы видим вас, даже если вы не видите нас.»</p>
+          <cite>— Комиссар Юстиции, официальное обращение, 20.04.2031</cite>
+        </blockquote>
+
+        <div class="overview-grid" style="margin:1.5rem 0 0;">
+          <div class="ov-cell">
+            <div class="ov-label">План производства</div>
+            <div class="ov-value gold">20 000 единиц F-01 к концу года</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Функция слежки</div>
+            <div class="ov-value">УВБП использует «Фантомы» для наблюдения за удалёнными Зонами в режиме невидимости</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCIDENT 29 -->
+    <div class="incident">
+      <div class="inc-head" onclick="toggle(this)">
+        <span class="inc-num">№29</span>
+        <span class="inc-title">«Железный Эшелон»</span>
+        <span class="inc-badge badge-green">Святоград получил стратегический конвой нового образца · 05.04.2031</span>
+      </div>
+      <div class="inc-body">
+        <div class="overview-grid" style="margin:0 0 1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Место</div>
+            <div class="ov-value">Главный терминал «Монада-Юг», Святоград</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Состав конвоя</div>
+            <div class="ov-value gold">Т-115 «Монарх» · «Атлант-8» · коконы Zeta</div>
+          </div>
+        </div>
+
+        <div class="protocol-list" style="margin:1.5rem 0;">
+          <div class="proto-item">
+            <div class="proto-num">Т-115</div>
+            <div>
+              <div class="proto-title">Сверхтяжёлые штурмовые платформы «Монарх»</div>
+              <div class="proto-body">Вес — тысячи тонн. Многоопорная магнитная система: прошли по брусчатке площади, не оставив трещины. Голубое свечение реакторов на антиматерии было настолько интенсивным, что жители ощущали покалывание статического электричества.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">Атлант-8</div>
+            <div>
+              <div class="proto-title">Многоцелевые платформы снабжения</div>
+              <div class="proto-body">Штаб на колёсах: развернули спутниковую антенну во время движения. Восьмиколёсные гиганты двигались почти бесшумно благодаря гибридным установкам. Синие световые индикаторы дисков пульсировали в такт защитному полю города.</div>
+            </div>
+          </div>
+          <div class="proto-item">
+            <div class="proto-num">Zeta</div>
+            <div>
+              <div class="proto-title">Автономные коконы Zeta — груз особого назначения</div>
+              <div class="proto-body">Три кокона самостоятельно маневрировали между зданиями. Центральные сканеры горели ярко-голубым: высокоуровневые сущности внутри под полным нейронным контролем. При входе в подземные секторы — автоматическая синхронизация с системами «Абсолютного Вакуума» центрального архива.</div>
+            </div>
+          </div>
+        </div>
+
+        <blockquote>
+          <p>«Прибытие конвоя выглядело как триумф богов войны, окончательно лишая надежды остатки сопротивления ГОК.»</p>
+          <cite>— Свидетельство наблюдателей, архив Святограда, 05.04.2031</cite>
+        </blockquote>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SVYATOGRAD -->
+<section id="svyatograd">
+  <div class="container">
+    <div class="section-eyebrow">Суверенная территория · основана 2031 г.</div>
+    <h2 class="section-title">Святоград — Цитадель Нового Мира</h2>
+
+    <!-- FLAG + BASIC INFO -->
+    <div style="display:grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: start; margin-bottom: 3rem;">
+
+      <!-- FLAG SVG -->
+      <div>
+        <div style="font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--gold-dim); text-transform:uppercase; margin-bottom:12px;">Государственный флаг</div>
+        <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; border:1px solid rgba(201,168,76,0.25); display:block;">
+          <defs>
+            <linearGradient id="gold-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#e8c96a"/>
+              <stop offset="50%" style="stop-color:#c9a84c"/>
+              <stop offset="100%" style="stop-color:#9a7a2e"/>
+            </linearGradient>
+            <linearGradient id="stripe-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#05050a"/>
+              <stop offset="50%" style="stop-color:#10101e"/>
+              <stop offset="100%" style="stop-color:#05050a"/>
+            </linearGradient>
+            <filter id="glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <rect width="340" height="220" fill="#07070f"/>
+          <ellipse cx="170" cy="110" rx="130" ry="90" fill="rgba(201,168,76,0.04)"/>
+          <rect x="0" y="0" width="340" height="30" fill="url(#gold-grad)"/>
+          <rect x="0" y="190" width="340" height="30" fill="url(#gold-grad)"/>
+          <rect x="0" y="0" width="36" height="220" fill="url(#stripe-grad)" opacity="0.85"/>
+          <rect x="304" y="0" width="36" height="220" fill="url(#stripe-grad)" opacity="0.85"/>
+          <text x="170" y="130" text-anchor="middle" font-family="Georgia, serif" font-size="88" font-weight="bold" fill="rgba(201,168,76,0.07)" letter-spacing="8">XI</text>
+          <circle cx="170" cy="110" r="62" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="170" cy="110" r="56" fill="none" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+          <circle cx="170" cy="110" r="55" fill="rgba(5,5,10,0.85)"/>
+          <g stroke="url(#gold-grad)" stroke-width="1.2" opacity="0.6">
+            <line x1="170" y1="48" x2="170" y2="55"/>
+            <line x1="170" y1="165" x2="170" y2="172"/>
+            <line x1="108" y1="110" x2="115" y2="110"/>
+            <line x1="225" y1="110" x2="232" y2="110"/>
+            <line x1="126" y1="66" x2="130" y2="70"/>
+            <line x1="210" y1="150" x2="214" y2="154"/>
+            <line x1="214" y1="66" x2="210" y2="70"/>
+            <line x1="130" y1="150" x2="126" y2="154"/>
+          </g>
+          <g filter="url(#glow-gold)">
+            <polygon points="170,58 174,95 170,105 166,95" fill="url(#gold-grad)" opacity="0.95"/>
+            <rect x="158" y="100" width="24" height="4" rx="1" fill="url(#gold-grad)" opacity="0.9"/>
+            <rect x="168" y="104" width="4" height="18" rx="1" fill="#8b6a20" opacity="0.9"/>
+            <circle cx="170" cy="125" r="4" fill="url(#gold-grad)" opacity="0.9"/>
+          </g>
+          <text x="170" y="148" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="url(#gold-grad)" filter="url(#glow-gold)" opacity="0.9" letter-spacing="2">Ξ</text>
+          <path id="arc-top" d="M 110,110 A 60,60 0 0,1 230,110" fill="none"/>
+          <text font-family="'Courier New', monospace" font-size="8.5" fill="#c9a84c" letter-spacing="3" opacity="0.85">
+            <textPath href="#arc-top" startOffset="10%">С В Я Т О Г Р А Д</textPath>
+          </text>
+          <path id="arc-bot" d="M 115,115 A 58,58 0 0,0 225,115" fill="none"/>
+          <text font-family="'Courier New', monospace" font-size="8" fill="#9a7a2e" letter-spacing="4" opacity="0.7">
+            <textPath href="#arc-bot" startOffset="18%">· M M X X X I ·</textPath>
+          </text>
+          <g fill="url(#gold-grad)" opacity="0.5">
+            <rect x="42" y="12" width="8" height="2" rx="0.5"/><rect x="45" y="9" width="2" height="8" rx="0.5"/>
+            <rect x="290" y="12" width="8" height="2" rx="0.5"/><rect x="293" y="9" width="2" height="8" rx="0.5"/>
+            <rect x="42" y="206" width="8" height="2" rx="0.5"/><rect x="45" y="203" width="2" height="8" rx="0.5"/>
+            <rect x="290" y="206" width="8" height="2" rx="0.5"/><rect x="293" y="203" width="2" height="8" rx="0.5"/>
+          </g>
+          <rect x="0" y="0" width="3" height="220" fill="url(#gold-grad)" opacity="0.6"/>
+        </svg>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.78rem; color:var(--text-dim);">
+            <span style="width:14px; height:14px; background:linear-gradient(135deg,#e8c96a,#9a7a2e); border-radius:2px; flex-shrink:0;"></span>
+            Золото — власть Совета XI над реальностью
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.78rem; color:var(--text-dim);">
+            <span style="width:14px; height:14px; background:#07070f; border:1px solid rgba(201,168,76,0.3); border-radius:2px; flex-shrink:0;"></span>
+            Чёрный — Бездна, из которой рождается порядок
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.78rem; color:var(--text-dim);">
+            <span style="width:14px; height:14px; display:flex; align-items:center; justify-content:center; color:#c9a84c; font-size:12px; flex-shrink:0;">⚔</span>
+            Меч — абсолютная сила сдерживания
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.78rem; color:var(--text-dim);">
+            <span style="width:14px; height:14px; display:flex; align-items:center; justify-content:center; color:#c9a84c; font-size:11px; flex-shrink:0;">Ξ</span>
+            Ξ (Ксенос) — личный знак Совета XI
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: basic info -->
+      <div>
+        <div class="overview-grid" style="margin-bottom:1.5rem;">
+          <div class="ov-cell">
+            <div class="ov-label">Статус</div>
+            <div class="ov-value gold">Суверенная территория Совета XI</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Основан</div>
+            <div class="ov-value">11 февраля 2031 г. · Инцидент №25</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Расположение</div>
+            <div class="ov-value">Руины Ватикана и Рима · Центральная Италия</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Режим доступа</div>
+            <div class="ov-value red">Полностью закрыт · Уровень ∞</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Правящий орган</div>
+            <div class="ov-value gold">Наследник X-1 · ВПСП · УВБП</div>
+          </div>
+          <div class="ov-cell">
+            <div class="ov-label">Население</div>
+            <div class="ov-value">Сотрудники Фонда · «Исправленные» граждане</div>
+          </div>
+        </div>
+        <p style="font-size:0.9rem; margin-bottom:1rem;">Святоград — это не просто город. Это живое воплощение абсолютной воли Совета XI: промышленная крепость, идеологический центр и военная твердыня в одном. Он возник на руинах того, что люди называли «духовным центром мира», — как намеренный символ. Там, где стояли алтари, теперь гудят аннигиляционные реакторы. Там, где пели хоры, теперь стучат конвейеры Т-95.</p>
+        <blockquote style="margin:0;">
+          <p>«Мы не разрушили священное место. Мы освободили его от неэффективного владельца и передали тому, кто действительно способен управлять реальностью.»</p>
+          <cite>— X-1 (Наследник), обращение к мировым лидерам, 12 февраля 2031 г.</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- INFRASTRUCTURE -->
+    <div class="section-eyebrow" style="margin-bottom:12px;">Инфраструктура</div>
+    <div class="monada-grid" style="margin-bottom:3rem;">
+      <div class="monada-card">
+        <div class="mc2-icon">⬡</div>
+        <div class="mc2-title">База «Монада-Юг»</div>
+        <div class="mc2-body">Построена прямо под руинами Собора Святого Петра. Мощнейший центр переработки аномальной энергии в Европе. Соединена живым пространством напрямую с главной «Монадой» — материализация бойцов происходит мгновенно.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">⚙</div>
+        <div class="mc2-title">Промышленное ядро</div>
+        <div class="mc2-body">50% производственных мощностей Совета XI: тяжёлые вооружения, броня для МОГ, компоненты ракет «Сармат-К». Конвейер выпускает 100 танков Т-95 «Космос» еженедельно. 20 000 истребителей F-01 «Фантом» в год.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">◈</div>
+        <div class="mc2-title">Хранилища SCP</div>
+        <div class="mc2-body">Все аномальные реликвии, которые Ватикан скрывал веками, каталогизированы и переданы в распоряжение науки Совета XI. Архивы заняли целый подземный уровень под Сикстинской капеллой.</div>
+      </div>
+      <div class="monada-card">
+        <div class="mc2-icon">✦</div>
+        <div class="mc2-title">Университет Новой Этики</div>
+        <div class="mc2-body">Создан ВПСП. Готовит будущих руководителей мира — исключительно в духе служения Совету XI. Выпускники занимают ключевые посты в Директоратах Зон по всему миру.</div>
+      </div>
+    </div>
+
+    <!-- DEFENSE RINGS -->
+    <div class="section-eyebrow" style="margin-bottom:12px;">Система обороны — три кольца</div>
+    <div class="protocol-list" style="margin-bottom:3rem;">
+      <div class="proto-item">
+        <div class="proto-num">I</div>
+        <div>
+          <div class="proto-title">Внешнее кольцо — 700 танков Т-95 «Космос»</div>
+          <div class="proto-body">Непрерывная сеть Гравитационных щитов по всему периметру города. Рельсотроны поражают цели на дистанции 18 км с точностью до миллиметра. Благодаря дронам «Спутник» контроль воздушного пространства в радиусе 200 км.</div>
+        </div>
+      </div>
+      <div class="proto-item">
+        <div class="proto-num">II</div>
+        <div>
+          <div class="proto-title">Воздушный щит — три крейсера TZ-19 «COSMOS»</div>
+          <div class="proto-body">Зависли на высоте 5 км над центром Святограда. Система «Сфера» создаёт купол, непроницаемый для ядерного и аномального оружия. Орбитальные рельсотроны прикрывают F-01 «Фантом» с воздуха.</div>
+        </div>
+      </div>
+      <div class="proto-item">
+        <div class="proto-num">III</div>
+        <div>
+          <div class="proto-title">Внутренний сектор — «Заслон-XI» и пусковые «Сармат-К»</div>
+          <div class="proto-body">Подразделения УВБП контролируют промышленную зону и чистоту рядов персонала. 12 единиц РС-28К нацелены на ключевые аномальные зоны планеты. Вероятность успешного нападения: 0.00001%.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REGIME -->
+    <div class="section-eyebrow" style="margin-bottom:12px;">Режим управления</div>
+    <div class="members-grid" style="margin-bottom:2rem; grid-template-columns: repeat(3,1fr);">
+      <div class="member-card">
+        <div class="mc-id">УВБП · «АБСОЛЮТНАЯ ТИШИНА»</div>
+        <div class="mc-name">Режим нулевой терпимости</div>
+        <div class="mc-desc">Любое упоминание старых молитв или попытки восстания — немедленное стирание личности. Серые мундиры патрулируют город круглосуточно. F-01 «Фантом» могут висеть над головой в режиме невидимости.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">ВПСП · ИДЕОЛОГИЧЕСКИЙ КОНТРОЛЬ</div>
+        <div class="mc-name">Фонд Искупления</div>
+        <div class="mc-desc">Богатейшие жители обязаны жертвовать 80% активов в «Фонд Искупления» Совета XI. Центры переобучения мировой элиты переформатируют сознание в течение 6 месяцев.</div>
+      </div>
+      <div class="member-card">
+        <div class="mc-id">МОГ X-99 · БОЕВОЕ ДЕЖУРСТВО</div>
+        <div class="mc-name">Постоянный гарнизон</div>
+        <div class="mc-desc">«Белое Пламя» получило в Святограде новый полигон и ремонтные доки. Бойцы X-99 несут дежурство в Монаде-Юг — точка мгновенной переброски в любую точку планеты.</div>
+      </div>
+    </div>
+
+    <blockquote>
+      <p>«Святоград — это сердце нового мира. 700 стволов Т-95 — это его пульс. TZ-19 в небе — это его глаза. Любой, кто оспорит волю Совета, столкнётся не с армией, а с физическим законом уничтожения.»</p>
+      <cite>— Манифест ВПСП · 15 марта 2031 г. · Инцидент №27 «Стальной Завет»</cite>
+    </blockquote>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-xi">Совет XI · «Ксенос»</div>
+  <div class="footer-code">Протокол «Алеф-Нуль» · Объект №4514 · Уровень ∞ · [ВСЕ ДАННЫЕ ЗАСЕКРЕЧЕНЫ]</div>
+</footer>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+  header.style.borderBottomColor = body.classList.contains('open')
+    ? 'rgba(201,168,76,0.18)' : 'transparent';
+}
+</script>
+</body>
+</html>
